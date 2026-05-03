@@ -4,13 +4,13 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>S.S — · Developer</title>
-<meta name="description" content=" — Developer. Building scalable systems from API to UI. Flask, Python, full-stack deployment."/>
+<meta name="description" content=" — Developer.I build things and put them out for real use.Flask, Python, full-stack deployment."/>
 <meta name="keywords" content=", software engineer, Flask developer, Python, backend developer, full-stack, Railway, Render"/>
 <meta name="author" content="Shivam Sharma"/>
 <meta name="robots" content="index, follow"/>
 <meta property="og:type" content="website"/>
 <meta property="og:title" content="S.S —· Developer"/>
-<meta property="og:description" content="Building scalable systems from API to UI. Flask, Python, production-deployed web applications."/>
+<meta property="og:description" content="I build things and put them out for real use, Python, production-deployed web applications."/>
 <meta property="og:url" content="https://shivam9109.github.io"/>
 <meta property="og:image" content="https://shivam9109.github.io/og-cover.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
@@ -47,7 +47,47 @@
   --ease-spring:cubic-bezier(.34,1.56,.64,1);
   --ease-cinema:cubic-bezier(0.16,1,0.3,1);
 }
+.h-badge-display {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  backdrop-filter: blur(6px);
+}.reveal-text {
+  display: inline-block;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
 
+.reveal-text span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: revealUp 0.4s forwards;
+  animation-delay: calc(var(--i) * 0.04s);
+}
+
+@keyframes revealUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.h-badge-display::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.35), transparent);
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
 /* ─── Reset ──────────────────────────────────────────────────── */
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;-webkit-tap-highlight-color:transparent;}
@@ -208,8 +248,6 @@ nav.visible{opacity:1;transform:translateY(0);}
 }
 
 /* ─── CINEMATIC HERO ANIMATIONS ──────────────────────────────── */
-/* "Invisible Wall" masked-reveal: overflow:hidden clips as text slides up */
-
 .h-line-mask{
   display:block;
   overflow:hidden;
@@ -221,8 +259,6 @@ nav.visible{opacity:1;transform:translateY(0);}
   will-change:transform,opacity;
   animation:heroLineUp 1s var(--ease-cinema) both;
 }
-
-/* S.S Initials — letter-spacing contracts on reveal for cinematic feel */
 .h-ss-inner{
   display:block;
   will-change:transform,opacity;
@@ -238,7 +274,6 @@ nav.visible{opacity:1;transform:translateY(0);}
 }
 
 /* ─── HERO IDENTITY BLOCK ────────────────────────────────────── */
-/* S.S — Large premium initials logo */
 .hero-initials{
   font-family:'Plus Jakarta Sans','Syne',sans-serif;
   font-size:clamp(4.5rem,13vw,10rem);
@@ -249,7 +284,6 @@ nav.visible{opacity:1;transform:translateY(0);}
   margin-bottom:12px;
   text-transform:uppercase;
 }
-/* Full Name — below S.S, elegant small caps */
 .hero-fullname-display{
   font-family:'DM Sans',sans-serif;
   font-size:clamp(.75rem,1.4vw,.92rem);
@@ -259,7 +293,6 @@ nav.visible{opacity:1;transform:translateY(0);}
   text-transform:uppercase;
   margin-bottom:4px;
 }
-/* Developer title */
 .hero-dev-display{
   font-family:'DM Sans',sans-serif;
   font-size:clamp(.65rem,1.1vw,.78rem);
@@ -270,7 +303,6 @@ nav.visible{opacity:1;transform:translateY(0);}
   margin-bottom:22px;
   opacity:0.85;
 }
-/* Tagline */
 .hero-tagline-display{
   font-family:'DM Sans',sans-serif;
   font-size:clamp(.8rem,1.5vw,.95rem);
@@ -282,7 +314,6 @@ nav.visible{opacity:1;transform:translateY(0);}
   margin:0 auto;
   text-wrap:balance;
 }
-/* Hero role (old — keep for fallback compat) */
 .hero-role-display{
   font-family:'DM Sans',sans-serif;
   font-size:clamp(.9rem,1.8vw,1.1rem);
@@ -296,7 +327,6 @@ nav.visible{opacity:1;transform:translateY(0);}
   opacity:.6;
   margin:0 6px;
 }
-/* Hero sub */
 .hero-sub-display{
   font-size:clamp(.76rem,1.2vw,.88rem);
   color:var(--muted);
@@ -833,7 +863,6 @@ section{padding:120px 5%;max-width:1060px;margin:0 auto;}
 .section-title .sw{transition:transform .78s cubic-bezier(.16,1,.3,1),opacity .45s ease;}
 
 /* ─── FEATURED CARD — Scroll-triggered Masked Reveal ─────────── */
-/* Each revealable child uses .rev-mask wrapper + .rev-inner text  */
 .rev-mask{
   display:block;
   overflow:hidden;
@@ -846,7 +875,6 @@ section{padding:120px 5%;max-width:1060px;margin:0 auto;}
   transform:translateY(0);
   opacity:1;
 }
-/* When card gets .card-entering, all rev-inner elements animate in */
 .feat-card-container.card-entering .rev-inner{
   animation:featReveal .9s cubic-bezier(0.16,1,0.3,1) both;
 }
@@ -857,8 +885,6 @@ section{padding:120px 5%;max-width:1060px;margin:0 auto;}
 .feat-card-container.card-entering .rev-mask:nth-child(5) .rev-inner{animation-delay:.34s;}
 .feat-card-container.card-entering .rev-mask:nth-child(6) .rev-inner{animation-delay:.42s;}
 .feat-card-container.card-entering .rev-mask:nth-child(7) .rev-inner{animation-delay:.5s;}
-
-/* Stagger via data-delay attr set by JS */
 .feat-card-container.card-entering .rev-inner[data-delay="0"]{animation-delay:0s;}
 .feat-card-container.card-entering .rev-inner[data-delay="1"]{animation-delay:.1s;}
 .feat-card-container.card-entering .rev-inner[data-delay="2"]{animation-delay:.18s;}
@@ -867,8 +893,6 @@ section{padding:120px 5%;max-width:1060px;margin:0 auto;}
 .feat-card-container.card-entering .rev-inner[data-delay="5"]{animation-delay:.45s;}
 .feat-card-container.card-entering .rev-inner[data-delay="6"]{animation-delay:.54s;}
 .feat-card-container.card-entering .rev-inner[data-delay="7"]{animation-delay:.63s;}
-
-/* Pre-entry state: text is hidden below mask */
 .feat-card-container.card-pre-entry .rev-inner{
   transform:translateY(110%);
   opacity:0;
@@ -878,7 +902,6 @@ section{padding:120px 5%;max-width:1060px;margin:0 auto;}
   0%{transform:translateY(110%);opacity:0;}
   100%{transform:translateY(0);opacity:1;}
 }
-/* Post-reveal: card-revealed class — completely normal state, no clip interference */
 .feat-card-container.card-revealed .rev-mask{
   overflow:visible;
   padding-bottom:0;
@@ -1108,7 +1131,7 @@ footer{border-top:1px solid rgba(255,255,255,.04);}
   </a>
   <ul class="nav-links">
     <li><a href="#hero">Home</a></li>
-    <li><a href="#projects">Projects</a></li>
+    <li><a href="media.html">Media</a></li>
     <li><a href="decision-systems.html">Systems</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -1130,45 +1153,63 @@ footer{border-top:1px solid rgba(255,255,255,.04);}
 
   <div class="hero-content">
 
-    <!-- Badge (T=0ms) -->
-    <div class="h-badge-display" style="animation:heroLineUp .8s var(--ease-cinema) .05s both;">
-      <span class="pulse-dot"></span>
-      Available for engineering roles &amp; complex builds
+    <div class="h-badge-display">
+      <div class="reveal-text">
+        <span style="--i:1">S</span><span style="--i:2">t</span><span style="--i:3">a</span><span style="--i:4">r</span><span style="--i:5">t</span><span style="--i:6">e</span><span style="--i:7">d</span>
+        <span style="--i:8">&nbsp;</span>
+        <span style="--i:9">w</span><span style="--i:10">i</span><span style="--i:11">t</span><span style="--i:12">h</span>
+        <span style="--i:13">&nbsp;</span>
+        <span style="--i:14">a</span><span style="--i:15">n</span>
+        <span style="--i:16">&nbsp;</span>
+        <span style="--i:17">i</span><span style="--i:18">d</span><span style="--i:19">e</span><span style="--i:20">a</span>
+        <span style="--i:21">&nbsp;</span>
+        <span style="--i:22">n</span><span style="--i:23">o</span><span style="--i:24">w</span>
+        <span style="--i:25">&nbsp;</span>
+        <span style="--i:26">i</span><span style="--i:27">t</span><span style="--i:28">'</span><span style="--i:29">s</span>
+        <span style="--i:30">&nbsp;</span>
+        <span style="--i:31">a</span>
+        <span style="--i:32">&nbsp;</span>
+        <span style="--i:33">t</span><span style="--i:34">o</span><span style="--i:35">o</span><span style="--i:36">l</span>
+        <span style="--i:37">&nbsp;</span>
+        <span style="--i:38">I</span>
+        <span style="--i:39">&nbsp;</span>
+        <span style="--i:40">u</span><span style="--i:41">s</span><span style="--i:42">e</span>
+        <span style="--i:43">&nbsp;</span>
+        <span style="--i:44">e</span><span style="--i:45">v</span><span style="--i:46">e</span><span style="--i:47">r</span><span style="--i:48">y</span>
+        <span style="--i:49">&nbsp;</span>
+        <span style="--i:50">d</span><span style="--i:51">a</span><span style="--i:52">y</span>
+      </div>
     </div>
 
-    <!-- S.S Initials — cinematic letter-spacing contraction (T=100ms) -->
     <div class="hero-initials">
       <div class="h-line-mask">
         <div class="h-ss-inner">S.S</div>
       </div>
     </div>
 
-    <!-- Full Name — elegant light-weight all-caps (T=250ms) -->
     <div class="hero-fullname-display">
       <div class="h-line-mask">
         <div class="h-line-inner" style="animation-delay:0.25s;">SHIVAM SHARMA</div>
       </div>
     </div>
 
-    <!-- DEVELOPER — minimal, steel blue accent (T=400ms) -->
     <div class="hero-dev-display">
       <div class="h-line-mask">
         <div class="h-line-inner" style="animation-delay:0.40s;">DEVELOPER</div>
       </div>
     </div>
 
-    <!-- Tagline (T=550ms) -->
     <div class="hero-tagline-display" style="margin-top:10px;">
       <div class="h-line-mask">
         <div class="h-line-inner" style="animation-delay:0.55s;">
-          Building Scalable Systems from API to UI
+          I build things and put them out for real use
         </div>
       </div>
     </div>
 
-    <!-- CTA — T=700ms -->
+    <!-- ✅ FIXED: VidSnap → Render URL -->
     <div class="h-cta-row" style="animation:heroLineUp .9s var(--ease-cinema) .7s both;">
-      <a href="https://web-production-5ba75.up.railway.app/" target="_blank" rel="noopener noreferrer" class="btn-primary" id="btn-live-demo">
+      <a href="https://videodownloader-iicl.onrender.com/" target="_blank" rel="noopener noreferrer" class="btn-primary" id="btn-live-demo">
         <svg class="btn-icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
         Try Live Demo — VidSnap
       </a>
@@ -1178,7 +1219,6 @@ footer{border-top:1px solid rgba(255,255,255,.04);}
       </a>
     </div>
 
-    <!-- Tech strip — T=700ms -->
     <div class="tech-strip">
       <span>Python / Flask</span><span>JavaScript</span><span>yt-dlp</span>
       <span>Android</span><span>REST API</span><span>Railway</span>
@@ -1216,11 +1256,11 @@ footer{border-top:1px solid rgba(255,255,255,.04);}
             <span class="creator-tag purple">Manhwa</span>
             <span class="creator-tag">16 titles</span>
           </div>
-          <div class="creator-cta" id="creator-cta-btn">
+          <a class="creator-cta" href="media.html" id="creator-cta-btn">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
             View all media logs
             <span class="creator-cta-arrow">→</span>
-          </div>
+          </a>
         </div>
         <div class="creator-covers">
           <div class="covers-row">
@@ -1236,7 +1276,7 @@ footer{border-top:1px solid rgba(255,255,255,.04);}
     </div>
   </div>
 
-  <!-- VidSnap Featured Card — Scroll-triggered Masked Reveal -->
+  <!-- VidSnap Featured Card -->
   <div class="featured-wrap feat-card-container card-pre-entry" id="feat-wrap">
     <div class="featured-card" id="feat-card">
       <div class="featured-card-glow"></div>
@@ -1259,7 +1299,8 @@ footer{border-top:1px solid rgba(255,255,255,.04);}
             <span class="tag cyan">Render</span>
           </div>
           <div class="project-links">
-            <a href="https://web-production-5ba75.up.railway.app/" target="_blank" rel="noopener noreferrer" class="btn-sm btn-live">
+            <!-- ✅ FIXED: VidSnap Live App → Render URL -->
+            <a href="https://videodownloader-iicl.onrender.com/" target="_blank" rel="noopener noreferrer" class="btn-sm btn-live">
               <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
               Live App
             </a>
@@ -1277,7 +1318,8 @@ footer{border-top:1px solid rgba(255,255,255,.04);}
               <div class="device-dot r"></div>
               <div class="device-dot y"></div>
               <div class="device-dot g"></div>
-              <div class="device-url">web-production-5ba75.up.railway.app</div>
+              <!-- ✅ FIXED: Device URL bar → Render domain -->
+              <div class="device-url">videodownloader-iicl.onrender.com</div>
             </div>
             <div class="device-screen">
               <div class="ds-logo">⚡ VidSnap</div>
@@ -1337,6 +1379,7 @@ footer{border-top:1px solid rgba(255,255,255,.04);}
       <div class="card-preview">→ How I build without noise</div>
     </a>
 
+    <!-- ✅ FIXED: Cyber Hub Live App → Railway URL -->
     <a class="project-card" href="https://github.com/shivam9109/cyber-hub" target="_blank" rel="noopener noreferrer">
       <div class="card-bar"></div>
       <div class="project-icon">
@@ -1350,8 +1393,11 @@ footer{border-top:1px solid rgba(255,255,255,.04);}
         <span class="tag">Flask</span><span class="tag">PostgreSQL</span><span class="tag purple">Redis</span><span class="tag cyan">Security</span>
       </div>
       <div class="project-links">
-        <span class="btn-sm btn-live" style="cursor:default;opacity:.7;">Live</span>
-        <span class="btn-sm btn-code" style="cursor:default;">Code</span>
+        <a href="https://web-production-5ba75.up.railway.app/" target="_blank" rel="noopener noreferrer" class="btn-sm btn-live" onclick="event.stopPropagation()">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          Live App
+        </a>
+        <a href="https://github.com/shivam9109/cyber-hub" target="_blank" rel="noopener noreferrer" class="btn-sm btn-code" onclick="event.stopPropagation()">Code</a>
       </div>
       <div class="card-preview">→ Cyber awareness platform with community</div>
     </a>
@@ -1581,7 +1627,7 @@ footer{border-top:1px solid rgba(255,255,255,.04);}
         <div class="ac-glass"></div>
         <div class="ac-content">
           <span class="ac-name">Shivam Sharma</span>
-          <span class="ac-role">Devloper</span>
+          <span class="ac-role">Developer</span>
           <span class="ac-stat">Flask · Python · Full-Stack</span>
           <span class="ac-stat">Security-first every build</span>
           <span class="ac-stat">Independently built &amp; deployed</span>
@@ -1851,10 +1897,8 @@ function initFeaturedCardReveal(){
       if(entry.isIntersecting && !observed){
         observed = true;
         observer.unobserve(container);
-        // Start animation
         container.classList.remove('card-pre-entry');
         container.classList.add('card-entering');
-        // After animation completes (~1000ms), switch to fully normal state
         setTimeout(function(){
           container.classList.remove('card-entering');
           container.classList.add('card-revealed');

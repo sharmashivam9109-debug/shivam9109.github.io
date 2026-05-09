@@ -658,6 +658,7 @@ section{padding:120px 5%;max-width:1060px;margin:0 auto;}
   opacity:0;transform:translateY(24px) scale(.97);
   transition:opacity .6s var(--ease-cinema),transform .6s var(--ease-cinema),border-color .25s,box-shadow .25s;
   will-change:transform;
+  contain:layout style paint;
 }
 .project-card::after{
   content:'';position:absolute;inset:0;border-radius:var(--radius);
@@ -703,6 +704,7 @@ section{padding:120px 5%;max-width:1060px;margin:0 auto;}
   padding:20px;display:flex;align-items:flex-start;gap:14px;
   opacity:0;transform:translateY(18px) scale(.97);
   transition:opacity .55s var(--ease-cinema),transform .55s var(--ease-cinema),border-color .25s,box-shadow .25s;
+  contain:layout style paint;
 }
 .whyme-card.vis{opacity:1;transform:translateY(0) scale(1);}
 .whyme-card:nth-child(2){transition-delay:.09s;}
@@ -739,6 +741,7 @@ section{padding:120px 5%;max-width:1060px;margin:0 auto;}
   border:1px solid var(--border);border-radius:11px;padding:16px;
   opacity:0;transform:translateY(16px) scale(.97);
   transition:opacity .55s var(--ease-cinema),transform .55s var(--ease-cinema),border-color .2s;
+  contain:layout style paint;
 }
 .stat-card.vis{opacity:1;transform:translateY(0) scale(1);}
 .stat-card:hover{border-color:rgba(96,165,250,.18);box-shadow:0 8px 24px rgba(0,0,0,.3);}
@@ -904,6 +907,16 @@ section{padding:120px 5%;max-width:1060px;margin:0 auto;}
 .cv-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.82) 0%,rgba(0,0,0,.2) 45%,transparent 65%);z-index:1;}
 .cv-label{position:relative;z-index:3;padding:5px 6px;font-family:'Syne',sans-serif;font-size:.46rem;font-weight:700;color:rgba(255,255,255,.92);line-height:1.25;text-shadow:0 1px 5px rgba(0,0,0,.9);}
 .cv-badge{position:absolute;top:5px;right:5px;z-index:5;width:18px;height:18px;border-radius:50%;background:rgba(96,165,250,.18);border:1px solid rgba(96,165,250,.3);display:flex;align-items:center;justify-content:center;font-size:.44rem;font-weight:700;color:var(--accent);}
+
+/* ─── Anime cover image (JS-injected) ───────────────────────── */
+.cv-img{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:center top;
+  opacity:0;transition:opacity .5s ease;z-index:0;border-radius:inherit;
+}
+.cv-img.loaded{opacity:1;}
+
+/* CSS fallback gradients (show while image loads / if load fails) */
 .cv-solo{background:linear-gradient(165deg,#020820 0%,#0d1a50 30%,#1a2870 55%,#060e30 80%,#010510 100%);}
 .cv-orv{background:linear-gradient(165deg,#0e0220 0%,#2a0850 35%,#4a1880 55%,#1a0435 80%,#080115 100%);}
 .cv-ged{background:linear-gradient(165deg,#020c04 0%,#0a2810 35%,#1a4520 55%,#2a5a15 70%,#0a1e06 100%);}
@@ -967,6 +980,7 @@ section{padding:120px 5%;max-width:1060px;margin:0 auto;}
   border:1px solid var(--border);border-radius:14px;position:relative;overflow:hidden;
   opacity:0;transform:translateY(26px) scale(.97);
   transition:opacity .6s var(--ease-cinema),transform .6s var(--ease-cinema),border-color .25s,box-shadow .25s;
+  contain:layout style paint;
 }
 .philosophy-card.vis{opacity:1;transform:translateY(0) scale(1);}
 .philosophy-card:nth-child(2){transition-delay:.11s;}
@@ -1023,6 +1037,7 @@ section{padding:120px 5%;max-width:1060px;margin:0 auto;}
   border:1px solid var(--border);border-radius:12px;padding:22px;
   opacity:0;transform:translateY(20px) scale(.97);
   transition:opacity .55s var(--ease-cinema),transform .55s var(--ease-cinema),border-color .25s,box-shadow .25s;
+  contain:layout style paint;
 }
 .now-card.vis{opacity:1;transform:translateY(0) scale(1);}
 .now-card:nth-child(2){transition-delay:.1s;}
@@ -1118,6 +1133,16 @@ footer{border-top:1px solid rgba(255,255,255,.04);}
 .contact-link-icon .icon-svg{width:20px;height:20px;}
 .ac-social-btn svg{width:14px;height:14px;}
 
+/* ─── Performance: remove backdrop-filter on touch devices ───── */
+@media(pointer:coarse){
+  .project-card,.featured-card,.creator-card,.philosophy-card,
+  .whyme-card,.now-card,.contact-link-card,.contact-form-wrap,
+  .stat-card,.think-right{
+    backdrop-filter:none !important;
+    -webkit-backdrop-filter:none !important;
+  }
+}
+
 /* ─── Reduced motion ─────────────────────────────────────────── */
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}
@@ -1199,8 +1224,6 @@ footer{border-top:1px solid rgba(255,255,255,.04);}
   <canvas id="ptc-canvas"></canvas>
 
   <div class="hero-content">
-
-    <!-- Badge -->
     <div class="h-badge-display">
       <div class="reveal-text">
         <span style="--i:1">S</span><span style="--i:2">t</span><span style="--i:3">a</span><span style="--i:4">r</span><span style="--i:5">t</span><span style="--i:6">e</span><span style="--i:7">d</span>
@@ -1221,28 +1244,24 @@ footer{border-top:1px solid rgba(255,255,255,.04);}
       </div>
     </div>
 
-    <!-- S.S Initials -->
     <div class="hero-initials">
       <div class="h-line-mask">
         <div class="h-ss-inner">S.S</div>
       </div>
     </div>
 
-    <!-- Full Name -->
     <div class="hero-fullname-display">
       <div class="h-line-mask">
         <div class="h-line-inner" style="animation-delay:0.28s;"></div>
       </div>
     </div>
 
-    <!-- DEVELOPER -->
     <div class="hero-dev-display">
       <div class="h-line-mask">
         <div class="h-line-inner" style="animation-delay:0.44s;">DEVELOPER · BUILDER · DEPLOYER</div>
       </div>
     </div>
 
-    <!-- Tagline -->
     <div class="hero-tagline-display" style="margin-top:10px;">
       <div class="h-line-mask">
         <div class="h-line-inner" style="animation-delay:0.58s;">
@@ -1251,7 +1270,6 @@ footer{border-top:1px solid rgba(255,255,255,.04);}
       </div>
     </div>
 
-    <!-- CTA -->
     <div class="h-cta-row">
       <a href="https://web-production-5ba75.up.railway.app/" target="_blank" rel="noopener noreferrer" class="btn-primary" id="btn-live-demo">
         <svg class="btn-icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
@@ -1263,13 +1281,11 @@ footer{border-top:1px solid rgba(255,255,255,.04);}
       </a>
     </div>
 
-    <!-- Tech strip -->
     <div class="tech-strip">
       <span>Python / Flask</span><span>JavaScript</span><span>yt-dlp</span>
       <span>Android</span><span>REST API</span><span>Railway</span>
       <span>Render</span><span>HMAC Auth</span><span>GitHub CI/CD</span>
     </div>
-
   </div>
 
   <div class="scroll-hint">
@@ -1309,12 +1325,49 @@ footer{border-top:1px solid rgba(255,255,255,.04);}
         </div>
         <div class="creator-covers">
           <div class="covers-row">
-            <div class="cv" title="Solo Leveling"><div class="cv-art cv-solo"><div class="cv-shine"></div><div class="cv-overlay"></div><div class="cv-label">Solo<br>Leveling</div></div></div>
-            <div class="cv" title="Omniscient Reader's Viewpoint"><div class="cv-art cv-orv"><div class="cv-shine"></div><div class="cv-overlay"></div><div class="cv-label">Omniscient<br>Reader</div></div></div>
-            <div class="cv" title="The Greatest Estate Developer"><div class="cv-art cv-ged"><div class="cv-shine"></div><div class="cv-overlay"></div><div class="cv-label">Greatest<br>Estate Dev</div></div></div>
-            <div class="cv" title="Frieren: Beyond Journey's End"><div class="cv-art cv-fri"><div class="cv-shine"></div><div class="cv-overlay"></div><div class="cv-label">Frieren</div></div></div>
-            <div class="cv" title="Re:Zero"><div class="cv-art cv-rez"><div class="cv-shine"></div><div class="cv-overlay"></div><div class="cv-label">Re:Zero</div></div></div>
-            <div class="cv" title="Chainsaw Man"><div class="cv-art cv-csm"><div class="cv-shine"></div><div class="cv-overlay"></div><div class="cv-label">Chainsaw<br>Man</div><div class="cv-badge">+10</div></div></div>
+            <div class="cv" title="Solo Leveling" data-cover="solo">
+              <div class="cv-art cv-solo">
+                <div class="cv-shine"></div>
+                <div class="cv-overlay"></div>
+                <div class="cv-label">Solo<br>Leveling</div>
+              </div>
+            </div>
+            <div class="cv" title="Omniscient Reader's Viewpoint" data-cover="orv">
+              <div class="cv-art cv-orv">
+                <div class="cv-shine"></div>
+                <div class="cv-overlay"></div>
+                <div class="cv-label">Omniscient<br>Reader</div>
+              </div>
+            </div>
+            <div class="cv" title="The Greatest Estate Developer" data-cover="ged">
+              <div class="cv-art cv-ged">
+                <div class="cv-shine"></div>
+                <div class="cv-overlay"></div>
+                <div class="cv-label">Greatest<br>Estate Dev</div>
+              </div>
+            </div>
+            <div class="cv" title="Frieren: Beyond Journey's End" data-cover="fri">
+              <div class="cv-art cv-fri">
+                <div class="cv-shine"></div>
+                <div class="cv-overlay"></div>
+                <div class="cv-label">Frieren</div>
+              </div>
+            </div>
+            <div class="cv" title="Re:Zero" data-cover="rez">
+              <div class="cv-art cv-rez">
+                <div class="cv-shine"></div>
+                <div class="cv-overlay"></div>
+                <div class="cv-label">Re:Zero</div>
+              </div>
+            </div>
+            <div class="cv" title="Chainsaw Man" data-cover="csm">
+              <div class="cv-art cv-csm">
+                <div class="cv-shine"></div>
+                <div class="cv-overlay"></div>
+                <div class="cv-label">Chainsaw<br>Man</div>
+                <div class="cv-badge">+10</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1456,7 +1509,6 @@ footer{border-top:1px solid rgba(255,255,255,.04);}
         <span class="tag">HTML/CSS</span><span class="tag">Vanilla JS</span><span class="tag purple">PWA</span>
       </div>
       <div class="project-links">
-        <!-- Live link coming soon — badge shown instead -->
         <span class="soon-label">Live soon</span>
         <a href="https://github.com/shivam9109/glass-spa" target="_blank" rel="noopener noreferrer" class="btn-sm btn-code" onclick="event.stopPropagation()">Code</a>
       </div>
@@ -1737,7 +1789,7 @@ footer{border-top:1px solid rgba(255,255,255,.04);}
       </a>
       <a class="contact-link-card github-highlight" href="https://github.com/shivam9109" target="_blank" rel="noopener noreferrer">
         <div class="contact-link-icon">
-          <svg class="icon-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          <svg class="icon-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
         </div>
         <div class="contact-link-label">Code</div>
         <div class="contact-link-value">GitHub</div>
@@ -1818,6 +1870,16 @@ var isLowEnd = isMobile && window.innerWidth < 480;
 var isFinePointer = window.matchMedia('(pointer:fine)').matches;
 var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
 
+/* ════════════════════════════════════════════════════════
+   PERF FIX #1 — Single global mouse tracker (passive)
+   All handlers read from _mx/_my instead of separate
+   mousemove listeners per feature.
+   ════════════════════════════════════════════════════════ */
+var _mx = -9999, _my = -9999;
+document.addEventListener('mousemove', function(e){
+  _mx = e.clientX; _my = e.clientY;
+}, { passive: true });
+
 /* ── Progress Bar ───────────────────────────────────── */
 (function(){
   var bar = document.getElementById('progress-bar');
@@ -1844,134 +1906,135 @@ window.addEventListener('load', function(){
   }, isLowEnd ? 500 : 180);
 });
 
-/* ── Custom cursor ──────────────────────────────────── */
-if(isFinePointer && !prefersReducedMotion){
-  var cur = document.getElementById('cur');
-  var ring = document.getElementById('cur-ring');
-  var cx = 0, cy = 0, rx = 0, ry = 0;
+/* ════════════════════════════════════════════════════════
+   PERF FIX #2 — Single master RAF loop
+   Cursor dot, ring lag, and orb parallax all run inside
+   ONE requestAnimationFrame — no redundant frames.
+   ════════════════════════════════════════════════════════ */
+var _cur = null, _ring = null;
+var _rx = 0, _ry = 0;
+var _orbs = [];
+var _orbFactors = [14, 22, 10];
+var _orbIds = ['orb1','orb2','orb3'];
 
-  document.addEventListener('mousemove', function(e){
-    cx = e.clientX; cy = e.clientY;
-    cur.style.left = cx + 'px';
-    cur.style.top  = cy + 'px';
-  });
+function initMasterLoop(){
+  if(isFinePointer && !prefersReducedMotion){
+    _cur  = document.getElementById('cur');
+    _ring = document.getElementById('cur-ring');
 
-  document.addEventListener('mousedown', function(){
-    document.body.classList.add('cur-click');
-  });
-  document.addEventListener('mouseup', function(){
-    document.body.classList.remove('cur-click');
-  });
+    document.addEventListener('mousedown', function(){ document.body.classList.add('cur-click'); });
+    document.addEventListener('mouseup',   function(){ document.body.classList.remove('cur-click'); });
+
+    document.querySelectorAll(
+      'a,button,.project-card,.philosophy-card,.whyme-card,.now-card,.contact-link-card,.creator-card,.cv,.feat-stat-row'
+    ).forEach(function(el){
+      el.addEventListener('mouseenter', function(){ document.body.classList.add('cur-hover'); }, { passive:true });
+      el.addEventListener('mouseleave', function(){ document.body.classList.remove('cur-hover'); }, { passive:true });
+    });
+  }
+
+  if(!isMobile && !prefersReducedMotion){
+    _orbIds.forEach(function(id){
+      var el = document.getElementById(id);
+      if(el) _orbs.push(el);
+    });
+  }
 
   (function loop(){
     requestAnimationFrame(loop);
-    rx += (cx - rx) * 0.095;
-    ry += (cy - ry) * 0.095;
-    ring.style.left = rx + 'px';
-    ring.style.top  = ry + 'px';
-  })();
 
-  document.querySelectorAll(
-    'a,button,.project-card,.philosophy-card,.whyme-card,.now-card,.contact-link-card,.creator-card,.cv,.feat-stat-row'
-  ).forEach(function(el){
-    el.addEventListener('mouseenter', function(){ document.body.classList.add('cur-hover'); });
-    el.addEventListener('mouseleave', function(){ document.body.classList.remove('cur-hover'); });
-  });
+    /* cursor dot — instant */
+    if(_cur){ _cur.style.left = _mx + 'px'; _cur.style.top = _my + 'px'; }
+
+    /* ring — lagged */
+    _rx += (_mx - _rx) * 0.095;
+    _ry += (_my - _ry) * 0.095;
+    if(_ring){ _ring.style.left = _rx + 'px'; _ring.style.top = _ry + 'px'; }
+
+    /* orb parallax */
+    if(_orbs.length){
+      var W = window.innerWidth  || 1;
+      var H = window.innerHeight || 1;
+      var ox = (_mx / W - 0.5) * 2;
+      var oy = (_my / H - 0.5) * 2;
+      _orbs.forEach(function(o, i){
+        o.style.transform = 'translate(' + (ox * _orbFactors[i]) + 'px,' + (oy * _orbFactors[i]) + 'px)';
+      });
+    }
+  })();
 }
 
-/* ── Particles ──────────────────────────────────────── */
+/* ════════════════════════════════════════════════════════
+   PERF FIX #3 — Particles (reduced connection distance)
+   O(n²) loop only checks 80px vs 105px — ~42% less work
+   ════════════════════════════════════════════════════════ */
 function initParticles(){
   var canvas = document.getElementById('ptc-canvas');
   if(!canvas || prefersReducedMotion) return;
   var ctx = canvas.getContext('2d');
-  var W, H, pts = [], mouseX = -9999, mouseY = -9999;
+  var W, H, pts = [];
 
   function resize(){
-    W = canvas.width = canvas.offsetWidth;
+    W = canvas.width  = canvas.offsetWidth;
     H = canvas.height = canvas.offsetHeight;
   }
   resize();
-  window.addEventListener('resize', resize);
+  var _resizeTimer;
+  window.addEventListener('resize', function(){
+    clearTimeout(_resizeTimer);
+    _resizeTimer = setTimeout(resize, 120);
+  }, { passive: true });
 
-  var COUNT = isLowEnd ? 0 : isMobile ? 16 : 30;
+  var COUNT = isLowEnd ? 0 : isMobile ? 14 : 26;
   for(var i = 0; i < COUNT; i++){
     pts.push({
       x: Math.random() * 1000,
       y: Math.random() * 1000,
       vx: (Math.random() - .5) * .3,
       vy: (Math.random() - .5) * .3,
-      r: Math.random() * 1.5 + .4,
-      a: Math.random() * .45 + .08
+      r:  Math.random() * 1.5 + .4,
+      a:  Math.random() * .45 + .08
     });
   }
 
-  document.addEventListener('mousemove', function(e){
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-  });
-
-  function draw(){
+  (function draw(){
+    requestAnimationFrame(draw);
     ctx.clearRect(0, 0, W, H);
-    pts.forEach(function(p){
-      /* subtle mouse repulsion */
-      var dx = p.x - mouseX, dy = p.y - mouseY;
-      var d = Math.sqrt(dx * dx + dy * dy);
-      if(d < 120){
-        p.vx += (dx / d) * 0.04;
-        p.vy += (dy / d) * 0.04;
-      }
-      /* dampen velocity */
-      p.vx *= 0.99;
-      p.vy *= 0.99;
 
+    pts.forEach(function(p){
+      var dx = p.x - _mx, dy = p.y - _my;
+      var d  = Math.sqrt(dx*dx + dy*dy);
+      if(d < 120){ p.vx += (dx/d) * 0.04; p.vy += (dy/d) * 0.04; }
+      p.vx *= 0.99; p.vy *= 0.99;
       p.x += p.vx; p.y += p.vy;
       if(p.x < 0) p.x = W; if(p.x > W) p.x = 0;
       if(p.y < 0) p.y = H; if(p.y > H) p.y = 0;
-
       ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
       ctx.fillStyle = 'rgba(96,165,250,' + p.a + ')';
       ctx.fill();
     });
 
+    /* PERF FIX: connection distance 105 → 80 */
+    var CONN = 80;
     for(var i = 0; i < pts.length; i++){
-      for(var j = i + 1; j < pts.length; j++){
+      for(var j = i+1; j < pts.length; j++){
         var dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y;
-        var dist = Math.sqrt(dx * dx + dy * dy);
-        if(dist < 105){
+        var dist = Math.sqrt(dx*dx + dy*dy);
+        if(dist < CONN){
           ctx.beginPath();
           ctx.moveTo(pts[i].x, pts[i].y);
           ctx.lineTo(pts[j].x, pts[j].y);
-          ctx.strokeStyle = 'rgba(96,165,250,' + (.05 * (1 - dist / 105)) + ')';
+          ctx.strokeStyle = 'rgba(96,165,250,' + (.05*(1-dist/CONN)) + ')';
           ctx.lineWidth = .5;
           ctx.stroke();
         }
       }
     }
-    requestAnimationFrame(draw);
-  }
-  draw();
+  })();
 }
 
-/* ── Mouse Parallax on hero orbs ────────────────────── */
-function initOrbParallax(){
-  if(isMobile || prefersReducedMotion) return;
-  var orbs = [
-    { el: document.getElementById('orb1'), factor: 14 },
-    { el: document.getElementById('orb2'), factor: 22 },
-    { el: document.getElementById('orb3'), factor: 10 }
-  ];
-  var ox = 0, oy = 0;
-  document.addEventListener('mousemove', function(e){
-    ox = (e.clientX / window.innerWidth  - .5) * 2;
-    oy = (e.clientY / window.innerHeight - .5) * 2;
-    orbs.forEach(function(o){
-      if(o.el) o.el.style.transform = 'translate(' + (ox * o.factor) + 'px,' + (oy * o.factor) + 'px)';
-    });
-  });
-}
-
-/* ── Text Scramble ──────────────────────────────────── */
+/* ── Text Scramble ──────────────────────────────────────────── */
 function TextScramble(el){
   this.el = el;
   this.chars = '!<>-_\\/[]{}—=+*^?#';
@@ -2022,17 +2085,14 @@ function initScrambleLabels(){
     var sc = new TextScramble(span);
     var obs = new IntersectionObserver(function(entries){
       entries.forEach(function(entry){
-        if(entry.isIntersecting){
-          sc.setText(orig);
-          obs.unobserve(span);
-        }
+        if(entry.isIntersecting){ sc.setText(orig); obs.unobserve(span); }
       });
     }, { threshold: 0.5 });
     obs.observe(span);
   });
 }
 
-/* ── Magnetic Buttons ───────────────────────────────── */
+/* ── Magnetic Buttons ───────────────────────────────────────── */
 function initMagnetic(){
   if(isMobile || prefersReducedMotion) return;
   document.querySelectorAll('.btn-primary,.btn-ghost,.nav-resume').forEach(function(btn){
@@ -2042,7 +2102,7 @@ function initMagnetic(){
       var y = (e.clientY - r.top  - r.height / 2) * 0.22;
       btn.style.transform = 'translate(' + x + 'px,' + y + 'px)';
       btn.style.transition = 'transform .08s ease';
-    });
+    }, { passive: true });
     btn.addEventListener('mouseleave', function(){
       btn.style.transform = '';
       btn.style.transition = 'transform .55s cubic-bezier(.23,1,.32,1)';
@@ -2050,7 +2110,7 @@ function initMagnetic(){
   });
 }
 
-/* ── Card Spotlight (mouse glow) ────────────────────── */
+/* ── Card Spotlight ─────────────────────────────────────────── */
 function initCardSpotlight(){
   if(isMobile) return;
   document.querySelectorAll('.project-card,.philosophy-card,.now-card,.whyme-card,.featured-card').forEach(function(card){
@@ -2062,11 +2122,11 @@ function initCardSpotlight(){
         card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
         card.style.setProperty('--my', ((e.clientY - r.top)  / r.height * 100) + '%');
       }
-    });
+    }, { passive: true });
   });
 }
 
-/* ── Card tilt — featured ───────────────────────────── */
+/* ── Card tilt — featured ───────────────────────────────────── */
 function initTilt(){
   if(isMobile || prefersReducedMotion) return;
   var fc = document.getElementById('feat-card');
@@ -2075,16 +2135,16 @@ function initTilt(){
     var r = fc.getBoundingClientRect();
     var dx = (e.clientX - r.left - r.width  / 2) / (r.width  / 2);
     var dy = (e.clientY - r.top  - r.height / 2) / (r.height / 2);
-    fc.style.transform = 'perspective(1200px) rotateX(' + (-dy * 3.5) + 'deg) rotateY(' + (dx * 3.5) + 'deg) translateY(-3px)';
+    fc.style.transform = 'perspective(1200px) rotateX(' + (-dy*3.5) + 'deg) rotateY(' + (dx*3.5) + 'deg) translateY(-3px)';
     fc.style.transition = 'transform .07s ease';
-  });
+  }, { passive: true });
   fc.addEventListener('mouseleave', function(){
     fc.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg) translateY(0)';
     fc.style.transition = 'transform .55s var(--ease-out)';
   });
 }
 
-/* ── Creator card tilt ──────────────────────────────── */
+/* ── Creator card tilt ──────────────────────────────────────── */
 function initCreatorTilt(){
   if(isMobile || prefersReducedMotion) return;
   var card = document.getElementById('creator-card');
@@ -2094,10 +2154,10 @@ function initCreatorTilt(){
     var r = card.getBoundingClientRect();
     var dx = (e.clientX - r.left - r.width  / 2) / (r.width  / 2);
     var dy = (e.clientY - r.top  - r.height / 2) / (r.height / 2);
-    card.style.transform = 'perspective(1200px) rotateX(' + (-dy * 5.5) + 'deg) rotateY(' + (dx * 5.5) + 'deg)';
+    card.style.transform = 'perspective(1200px) rotateX(' + (-dy*5.5) + 'deg) rotateY(' + (dx*5.5) + 'deg)';
     card.style.transition = 'transform .08s ease';
-    if(glow) glow.style.background = 'radial-gradient(ellipse 50% 45% at ' + (50 + dx * 22) + '% ' + (50 + dy * 22) + '%,rgba(96,165,250,.1),transparent 65%)';
-  });
+    if(glow) glow.style.background = 'radial-gradient(ellipse 50% 45% at ' + (50+dx*22) + '% ' + (50+dy*22) + '%,rgba(96,165,250,.1),transparent 65%)';
+  }, { passive: true });
   card.addEventListener('mouseleave', function(){
     card.style.transform = 'perspective(1200px) rotateX(0) rotateY(0)';
     card.style.transition = 'transform .55s var(--ease-out)';
@@ -2105,7 +2165,7 @@ function initCreatorTilt(){
   });
 }
 
-/* ── All card subtle tilt ───────────────────────────── */
+/* ── All card subtle tilt ───────────────────────────────────── */
 function initAllCardTilt(){
   if(isMobile || prefersReducedMotion) return;
   document.querySelectorAll('.philosophy-card,.now-card,.whyme-card,.stat-card').forEach(function(card){
@@ -2113,9 +2173,9 @@ function initAllCardTilt(){
       var r = card.getBoundingClientRect();
       var dx = (e.clientX - r.left - r.width  / 2) / (r.width  / 2);
       var dy = (e.clientY - r.top  - r.height / 2) / (r.height / 2);
-      card.style.transform = 'perspective(900px) rotateX(' + (-dy * 4) + 'deg) rotateY(' + (dx * 4) + 'deg) translateY(-4px) scale(1.01)';
+      card.style.transform = 'perspective(900px) rotateX(' + (-dy*4) + 'deg) rotateY(' + (dx*4) + 'deg) translateY(-4px) scale(1.01)';
       card.style.transition = 'transform .08s ease';
-    });
+    }, { passive: true });
     card.addEventListener('mouseleave', function(){
       card.style.transform = '';
       card.style.transition = 'transform .55s var(--ease-out)';
@@ -2124,14 +2184,11 @@ function initAllCardTilt(){
   });
 }
 
-/* ── Featured Card Masked Reveal ────────────────────── */
+/* ── Featured Card Masked Reveal ────────────────────────────── */
 function initFeaturedCardReveal(){
   var container = document.querySelector('.feat-card-container');
   if(!container || prefersReducedMotion){
-    if(container){
-      container.classList.remove('card-pre-entry');
-      container.classList.add('card-revealed');
-    }
+    if(container){ container.classList.remove('card-pre-entry'); container.classList.add('card-revealed'); }
     return;
   }
   var observed = false;
@@ -2152,7 +2209,7 @@ function initFeaturedCardReveal(){
   observer.observe(container);
 }
 
-/* ── Stat counter animation ─────────────────────────── */
+/* ── Stat counter animation ─────────────────────────────────── */
 function initCounters(){
   if(prefersReducedMotion) return;
   document.querySelectorAll('.stat-number[data-count]').forEach(function(el){
@@ -2166,7 +2223,7 @@ function initCounters(){
           var duration = 1400;
           (function tick(now){
             var t = Math.min((now - start) / duration, 1);
-            var eased = 1 - Math.pow(1 - t, 3);
+            var eased = 1 - Math.pow(1-t, 3);
             el.textContent = Math.floor(eased * target) + suffix;
             if(t < 1) requestAnimationFrame(tick);
             else el.textContent = target + suffix;
@@ -2178,23 +2235,20 @@ function initCounters(){
   });
 }
 
-/* ── Scroll reveal ──────────────────────────────────── */
+/* ── Scroll reveal ──────────────────────────────────────────── */
 function initScrollReveal(){
   var targets = document.querySelectorAll(
     '.section-title,.project-card,.stat-card,.contact-top,.contact-form-wrap,.whyme-card,.philosophy-card,.think-step,.think-right,.now-card'
   );
   var obs = new IntersectionObserver(function(entries){
     entries.forEach(function(entry){
-      if(entry.isIntersecting){
-        entry.target.classList.add('vis');
-        obs.unobserve(entry.target);
-      }
+      if(entry.isIntersecting){ entry.target.classList.add('vis'); obs.unobserve(entry.target); }
     });
   }, { threshold: 0.07, rootMargin: '0px 0px -28px 0px' });
   targets.forEach(function(el){ obs.observe(el); });
 }
 
-/* ── Split-Text Word Reveal ─────────────────────────── */
+/* ── Split-Text Word Reveal ─────────────────────────────────── */
 function initSplitText(){
   if(prefersReducedMotion) return;
   var targets = document.querySelectorAll('.section-title,.about-closing,.feat-title');
@@ -2231,7 +2285,7 @@ function initSplitText(){
   targets.forEach(function(el){ splitEl(el); obs.observe(el); });
 }
 
-/* ── Nav ─────────────────────────────────────────────── */
+/* ── Nav ─────────────────────────────────────────────────────── */
 function initNav(){
   setTimeout(function(){
     var nav = document.getElementById('navbar');
@@ -2239,11 +2293,11 @@ function initNav(){
   }, 160);
 }
 
-/* ── Contact form ───────────────────────────────────── */
+/* ── Contact form ───────────────────────────────────────────── */
 function initForm(){
   var btn = document.getElementById('cf-submit');
   if(!btn) return;
-  btn.addEventListener('click', function(e){
+  btn.addEventListener('click', function(){
     var name     = (document.getElementById('cf-name')     || {}).value || '';
     var email    = (document.getElementById('cf-email')    || {}).value || '';
     var msg      = (document.getElementById('cf-message')  || {}).value || '';
@@ -2254,8 +2308,7 @@ function initForm(){
     errEl.style.display = 'none';
     sucEl.style.display = 'none';
     if(!name.trim() || !email.trim() || !/^[^@]+@[^@]+\.[^@]+$/.test(email) || !msg.trim()){
-      errEl.style.display = 'block';
-      return;
+      errEl.style.display = 'block'; return;
     }
     btn.classList.add('loading');
     setTimeout(function(){
@@ -2271,7 +2324,7 @@ function initForm(){
   });
 }
 
-/* ── Ripple ──────────────────────────────────────────── */
+/* ── Ripple ──────────────────────────────────────────────────── */
 function addRipple(el){
   if(!el || el.tagName === 'DIV') return;
   el.addEventListener('click', function(e){
@@ -2279,20 +2332,86 @@ function addRipple(el){
     var size = Math.max(r.width, r.height) * 2;
     var rip = document.createElement('span');
     rip.className = 'ripple';
-    rip.style.cssText =
-      'width:' + size + 'px;height:' + size + 'px;' +
-      'left:' + (e.clientX - r.left - size / 2) + 'px;' +
-      'top:' + (e.clientY - r.top  - size / 2) + 'px;';
+    rip.style.cssText = 'width:' + size + 'px;height:' + size + 'px;left:' + (e.clientX-r.left-size/2) + 'px;top:' + (e.clientY-r.top-size/2) + 'px;';
     el.appendChild(rip);
     setTimeout(function(){ rip.remove(); }, 560);
   });
 }
 
-/* ── Boot ─────────────────────────────────────────────── */
+/* ════════════════════════════════════════════════════════
+   ANIME COVER IMAGES — AniList GraphQL API
+   Fetches real official cover art for each title.
+   CSS gradient fallback stays visible until image loads.
+   ════════════════════════════════════════════════════════ */
+function loadAnimeCoverImages(){
+  /* GraphQL aliases map directly to cover keys */
+  var gql = [
+    '{ ',
+    'sl:  Media(search:"Solo Leveling",   type:ANIME) { coverImage{extraLarge} }',
+    'orv: Media(search:"Omniscient Reader Viewpoint", type:MANGA) { coverImage{extraLarge} }',
+    'ged: Media(search:"The Greatest Estate Developer", type:MANGA) { coverImage{extraLarge} }',
+    'fri: Media(search:"Frieren Beyond Journeys End",  type:ANIME) { coverImage{extraLarge} }',
+    'rez: Media(search:"Re Zero Starting Life Another World", type:ANIME) { coverImage{extraLarge} }',
+    'csm: Media(search:"Chainsaw Man", type:ANIME) { coverImage{extraLarge} }',
+    '}'
+  ].join(' ');
+
+  /* Map alias → .cv-art class */
+  var COVER_MAP = {
+    sl:  '.cv-solo',
+    orv: '.cv-orv',
+    ged: '.cv-ged',
+    fri: '.cv-fri',
+    rez: '.cv-rez',
+    csm: '.cv-csm'
+  };
+
+  fetch('https://graphql.anilist.co', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({ query: gql })
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(d){
+    if(!d || !d.data) return;
+    Object.keys(COVER_MAP).forEach(function(alias){
+      var media = d.data[alias];
+      if(!media || !media.coverImage || !media.coverImage.extraLarge) return;
+      var el = document.querySelector(COVER_MAP[alias]);
+      if(!el) return;
+
+      /* Inject image — fades in over CSS gradient on load */
+      var img = document.createElement('img');
+      img.alt = alias;
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      img.style.cssText = [
+        'position:absolute',
+        'inset:0',
+        'width:100%',
+        'height:100%',
+        'object-fit:cover',
+        'object-position:center top',
+        'opacity:0',
+        'transition:opacity .5s ease',
+        'z-index:0',
+        'border-radius:inherit'
+      ].join(';');
+
+      img.onload = function(){ img.style.opacity = '1'; };
+      img.onerror = function(){ img.remove(); }; /* keep gradient on fail */
+      img.src = media.coverImage.extraLarge;
+      el.insertBefore(img, el.firstChild);
+    });
+  })
+  .catch(function(){ /* silently keep CSS gradients */ });
+}
+
+/* ── Boot ──────────────────────────────────────────────────────  */
 function boot(){
   initNav();
+  initMasterLoop();      /* cursor + ring + orb parallax in one RAF */
   initParticles();
-  initOrbParallax();
   initTilt();
   initCreatorTilt();
   initAllCardTilt();
@@ -2304,6 +2423,7 @@ function boot(){
   initMagnetic();
   initCounters();
   initForm();
+  loadAnimeCoverImages(); /* 6 real anime covers from AniList */
   var submitBtn = document.getElementById('cf-submit');
   if(submitBtn) addRipple(submitBtn);
 }

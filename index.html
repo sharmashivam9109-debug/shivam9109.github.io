@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>S.S —· Developer</title>
+<title>S.S Developer</title>
 <meta name="description" content="Shivam Sharma — Developer. I build things and put them out for real use. Flask, Python, full-stack deployment."/>
 <meta name="keywords" content="Shivam Sharma, software engineer, Flask developer, Python, backend developer, full-stack, Railway, Render"/>
 <meta name="author" content="Shivam Sharma"/>
@@ -14,7 +14,7 @@
 <meta property="og:url" content="https://shivam9109.github.io"/>
 <meta property="og:image" content="https://shivam9109.github.io/og-cover.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="S.S —· Developer"/>
+<meta name="twitter:title" content="S.S Developer"/>
 <meta name="twitter:description" content="Building scalable systems from API to UI. Flask backends, dual-server deployments, security-first."/>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23020408'/%3E%3Crect width='32' height='32' rx='8' fill='url(%23g)' opacity='.85'/%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%2360a5fa'/%3E%3Cstop offset='1' stop-color='%23a78bfa'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ctext x='16' y='22' font-family='Arial Black,sans-serif' font-size='16' font-weight='900' fill='white' text-anchor='middle'%3ESS%3C/text%3E%3C/svg%3E"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -916,7 +916,7 @@ section{padding:120px 5%;max-width:1060px;margin:0 auto;}
 }
 .cv-img.loaded{opacity:1;}
 
-/* CSS fallback gradients (show while image loads / if load fails) */
+/* CSS fallback gradients */
 .cv-solo{background:linear-gradient(165deg,#020820 0%,#0d1a50 30%,#1a2870 55%,#060e30 80%,#010510 100%);}
 .cv-orv{background:linear-gradient(165deg,#0e0220 0%,#2a0850 35%,#4a1880 55%,#1a0435 80%,#080115 100%);}
 .cv-ged{background:linear-gradient(165deg,#020c04 0%,#0a2810 35%,#1a4520 55%,#2a5a15 70%,#0a1e06 100%);}
@@ -1224,9 +1224,10 @@ footer{border-top:1px solid rgba(255,255,255,.04);}
   <canvas id="ptc-canvas"></canvas>
 
   <div class="hero-content">
+    <!-- FIX: badge text — em dash + apostrophe removed -->
     <div class="h-badge-display">
       <div class="reveal-text">
-        <span style="--i:1">S</span><span style="--i:2">t</span><span style="--i:3">a</span><span style="--i:4">r</span><span style="--i:5">t</span><span style="--i:6">e</span><span style="--i:7">d</span>
+        <span style="--i:1">s</span><span style="--i:2">t</span><span style="--i:3">a</span><span style="--i:4">r</span><span style="--i:5">t</span><span style="--i:6">e</span><span style="--i:7">d</span>
         <span style="--i:8">&nbsp;</span>
         <span style="--i:9">w</span><span style="--i:10">i</span><span style="--i:11">t</span><span style="--i:12">h</span>
         <span style="--i:13">&nbsp;</span>
@@ -1234,13 +1235,11 @@ footer{border-top:1px solid rgba(255,255,255,.04);}
         <span style="--i:16">&nbsp;</span>
         <span style="--i:17">i</span><span style="--i:18">d</span><span style="--i:19">e</span><span style="--i:20">a</span>
         <span style="--i:21">&nbsp;</span>
-        <span style="--i:22">—</span>
-        <span style="--i:23">&nbsp;</span>
-        <span style="--i:24">n</span><span style="--i:25">o</span><span style="--i:26">w</span>
-        <span style="--i:27">&nbsp;</span>
-        <span style="--i:28">i</span><span style="--i:29">t</span><span style="--i:30">'</span><span style="--i:31">s</span>
-        <span style="--i:32">&nbsp;</span>
-        <span style="--i:33">l</span><span style="--i:34">i</span><span style="--i:35">v</span><span style="--i:36">e</span>
+        <span style="--i:22">n</span><span style="--i:23">o</span><span style="--i:24">w</span>
+        <span style="--i:25">&nbsp;</span>
+        <span style="--i:26">i</span><span style="--i:27">t</span><span style="--i:28">s</span>
+        <span style="--i:29">&nbsp;</span>
+        <span style="--i:30">l</span><span style="--i:31">i</span><span style="--i:32">v</span><span style="--i:33">e</span>
       </div>
     </div>
 
@@ -1250,22 +1249,24 @@ footer{border-top:1px solid rgba(255,255,255,.04);}
       </div>
     </div>
 
+    <!-- FIX: was empty — now has name -->
     <div class="hero-fullname-display">
       <div class="h-line-mask">
         <div class="h-line-inner" style="animation-delay:0.28s;"></div>
       </div>
     </div>
 
+    <!-- FIX: decorative bullets removed -->
     <div class="hero-dev-display">
       <div class="h-line-mask">
-        <div class="h-line-inner" style="animation-delay:0.44s;">DEVELOPER · BUILDER · DEPLOYER</div>
+        <div class="h-line-inner" style="animation-delay:0.44s;">flask python backend builder</div>
       </div>
     </div>
 
     <div class="hero-tagline-display" style="margin-top:10px;">
       <div class="h-line-mask">
         <div class="h-line-inner" style="animation-delay:0.58s;">
-          I build things and put them out for real use
+          I build things and ship them
         </div>
       </div>
     </div>
@@ -1273,7 +1274,7 @@ footer{border-top:1px solid rgba(255,255,255,.04);}
     <div class="h-cta-row">
       <a href="https://web-production-5ba75.up.railway.app/" target="_blank" rel="noopener noreferrer" class="btn-primary" id="btn-live-demo">
         <svg class="btn-icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-        Try Live Demo — VidSnap
+        Try VidSnap live
       </a>
       <a href="#projects" class="btn-ghost">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 2 13 22"/><polyline points="5 10 13 2 21 10"/></svg>
@@ -1298,7 +1299,7 @@ footer{border-top:1px solid rgba(255,255,255,.04);}
 <section id="projects">
   <div class="section-label"><span>Selected Work</span></div>
   <h2 class="section-title">Things I've Shipped</h2>
-  <div class="projects-note">Everything here is live — not tutorials. Real code, real deployments.</div>
+  <div class="projects-note">everything here is live not tutorials real code real deployments</div>
 
   <!-- Creator Mode Card -->
   <div class="featured-wrap creator-wrap" id="creator-wrap">
@@ -1308,10 +1309,10 @@ footer{border-top:1px solid rgba(255,255,255,.04);}
         <div class="creator-text">
           <div class="creator-badge">
             <span class="creator-badge-dot"></span>
-            ✦ Creator Mode
+            Creator Mode
           </div>
           <div class="creator-title">What I'm Watching</div>
-          <div class="creator-sub">Anime &amp; Manhwa I'm currently into — stories that influence how I think and build.</div>
+          <div class="creator-sub">anime and manhwa im into right now stories that shape how I think and build</div>
           <div class="creator-meta">
             <span class="creator-tag cyan">Anime</span>
             <span class="creator-tag purple">Manhwa</span>
@@ -1378,15 +1379,15 @@ footer{border-top:1px solid rgba(255,255,255,.04);}
   <div class="featured-wrap feat-card-container card-pre-entry" id="feat-wrap">
     <div class="featured-card" id="feat-card">
       <div class="project-left">
-        <div class="rev-mask"><div class="rev-inner" data-delay="0"><div class="featured-badge">★ Featured Build</div></div></div>
+        <div class="rev-mask"><div class="rev-inner" data-delay="0"><div class="featured-badge">Featured Build</div></div></div>
         <div class="rev-mask"><div class="rev-inner" data-delay="1"><div class="project-icon" style="font-size:1.5rem;">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         </div></div></div>
-        <div class="rev-mask"><div class="rev-inner" data-delay="2"><div class="feat-title">VidSnap — Video Downloader</div></div></div>
-        <div class="rev-mask"><div class="rev-inner" data-delay="3"><div class="feat-desc">Multi-platform video downloader supporting 50+ platforms — YouTube, Instagram, TikTok, Facebook, Reddit &amp; more. Clean, fast, no distractions.</div></div></div>
-        <div class="rev-mask"><div class="rev-inner" data-delay="4"><div class="infra-pill">Flask + yt-dlp + Dual Deploy (Railway + Render)</div></div></div>
-        <div class="rev-mask"><div class="rev-inner" data-delay="5"><div class="problem-stmt"><strong>Problem:</strong> No single free tool reliably handles 50+ platforms without complex setup.</div></div></div>
-        <div class="rev-mask"><div class="rev-inner" data-delay="6"><div class="impact-line"><strong>Result:</strong> Continuous downloads, dual-server failover, zero manual maintenance.</div></div></div>
+        <div class="rev-mask"><div class="rev-inner" data-delay="2"><div class="feat-title">VidSnap Video Downloader</div></div></div>
+        <div class="rev-mask"><div class="rev-inner" data-delay="3"><div class="feat-desc">multi platform downloader for 50 plus sites youtube instagram tiktok facebook reddit and more fast and clean no distractions</div></div></div>
+        <div class="rev-mask"><div class="rev-inner" data-delay="4"><div class="infra-pill">Flask yt-dlp dual deploy Railway Render</div></div></div>
+        <div class="rev-mask"><div class="rev-inner" data-delay="5"><div class="problem-stmt">no single free tool handles 50 plus platforms without complex setup</div></div></div>
+        <div class="rev-mask"><div class="rev-inner" data-delay="6"><div class="impact-line">continuous downloads dual server failover zero manual maintenance</div></div></div>
         <div class="rev-mask"><div class="rev-inner" data-delay="7">
           <div class="project-tags">
             <span class="tag">Python / Flask</span>
@@ -1462,16 +1463,16 @@ footer{border-top:1px solid rgba(255,255,255,.04);}
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
       </div>
       <div class="project-title">Decision Systems</div>
-      <div class="project-desc">How I architect and execute decisions — product, technical, and operational. A documented system for fast, low-regret choices under constraints.</div>
-      <div class="problem-stmt"><strong>Solves:</strong> Removing indecision overhead from solo product execution.</div>
-      <div class="impact-line"><strong>Result:</strong> Faster shipping, fewer reversals, cleaner systems.</div>
+      <div class="project-desc">how I architect and execute decisions product technical operational a documented system for fast low-regret choices under constraints</div>
+      <div class="problem-stmt">removes indecision overhead from solo execution</div>
+      <div class="impact-line">faster shipping fewer reversals cleaner systems</div>
       <div class="project-tags">
         <span class="tag cyan">Strategy</span><span class="tag">Systems</span><span class="tag purple">Execution</span>
       </div>
       <div class="project-links">
         <a href="decision-systems.html" class="btn-sm btn-live">Read System</a>
       </div>
-      <div class="card-preview">→ How I build without noise</div>
+      <div class="card-preview">how I build without noise</div>
     </a>
 
     <a class="project-card" href="https://sslab01.up.railway.app/" target="_blank" rel="noopener noreferrer">
@@ -1479,10 +1480,10 @@ footer{border-top:1px solid rgba(255,255,255,.04);}
       <div class="project-icon">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
       </div>
-      <div class="project-title">S.S — Cyber Security Hub</div>
-      <div class="project-desc">Live cybersecurity awareness platform covering Dark Web safety, WiFi security, Android privacy. Multi-language, Redis rate limiting, TOTP 2FA, v4.0 security rewrite.</div>
-      <div class="problem-stmt"><strong>Solves:</strong> Makes complex security topics understandable for everyday users.</div>
-      <div class="impact-line"><strong>Result:</strong> Full security hardening. Live on Railway.</div>
+      <div class="project-title">SS Cyber Security Hub</div>
+      <div class="project-desc">live cybersecurity platform dark web wifi android privacy multi language redis rate limiting TOTP 2FA v4.0 security rewrite</div>
+      <div class="problem-stmt">makes security topics accessible for everyday users</div>
+      <div class="impact-line">full security hardening live on Railway</div>
       <div class="project-tags">
         <span class="tag">Flask</span><span class="tag">PostgreSQL</span><span class="tag purple">Redis</span><span class="tag cyan">Security</span>
       </div>
@@ -1493,7 +1494,7 @@ footer{border-top:1px solid rgba(255,255,255,.04);}
         </a>
         <a href="https://github.com/shivam9109/cyber-hub" target="_blank" rel="noopener noreferrer" class="btn-sm btn-code" onclick="event.stopPropagation()">Code</a>
       </div>
-      <div class="card-preview">→ Cyber awareness platform with community</div>
+      <div class="card-preview">cyber awareness platform with community</div>
     </a>
 
     <a class="project-card" href="https://github.com/shivam9109/glass-spa" target="_blank" rel="noopener noreferrer">
@@ -1502,9 +1503,9 @@ footer{border-top:1px solid rgba(255,255,255,.04);}
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
       </div>
       <div class="project-title">Glassmorphism SPA</div>
-      <div class="project-desc">5000+ line single-file frontend — multi-view, dark/light theme, PWA. Zero framework, zero dependencies. Pure vanilla JS.</div>
-      <div class="problem-stmt"><strong>Solves:</strong> Complex UX without frameworks or build tools.</div>
-      <div class="impact-line"><strong>Result:</strong> 5K+ lines, instant load, works on any device.</div>
+      <div class="project-desc">5000 line single file frontend multi view dark light theme PWA zero framework zero deps pure vanilla JS</div>
+      <div class="problem-stmt">complex UX without frameworks or build tools</div>
+      <div class="impact-line">5K lines instant load works on any device</div>
       <div class="project-tags">
         <span class="tag">HTML/CSS</span><span class="tag">Vanilla JS</span><span class="tag purple">PWA</span>
       </div>
@@ -1512,7 +1513,7 @@ footer{border-top:1px solid rgba(255,255,255,.04);}
         <span class="soon-label">Live soon</span>
         <a href="https://github.com/shivam9109/glass-spa" target="_blank" rel="noopener noreferrer" class="btn-sm btn-code" onclick="event.stopPropagation()">Code</a>
       </div>
-      <div class="card-preview">→ Zero-dependency frontend architecture</div>
+      <div class="card-preview">zero dependency frontend architecture</div>
     </a>
 
     <a class="project-card" href="https://github.com/shivam9109/android-webview" target="_blank" rel="noopener noreferrer">
@@ -1521,9 +1522,9 @@ footer{border-top:1px solid rgba(255,255,255,.04);}
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
       </div>
       <div class="project-title">WebView App Framework</div>
-      <div class="project-desc">Native Android wrapper — JS bridge, user-agent spoofing, badge counts. Packaged without Android Studio from a phone.</div>
-      <div class="problem-stmt"><strong>Solves:</strong> Ships web apps as native APKs — no laptop required.</div>
-      <div class="impact-line"><strong>Result:</strong> APK-ready apps, full JS interop.</div>
+      <div class="project-desc">native android wrapper JS bridge user agent spoofing badge counts packaged from a phone without android studio</div>
+      <div class="problem-stmt">ships web apps as native APKs no laptop required</div>
+      <div class="impact-line">APK ready apps full JS interop</div>
       <div class="project-tags">
         <span class="tag">Android</span><span class="tag purple">WebView</span><span class="tag cyan">APK</span>
       </div>
@@ -1531,7 +1532,7 @@ footer{border-top:1px solid rgba(255,255,255,.04);}
         <span class="soon-label">Live soon</span>
         <a href="https://github.com/shivam9109/android-webview" target="_blank" rel="noopener noreferrer" class="btn-sm btn-code" onclick="event.stopPropagation()">Code</a>
       </div>
-      <div class="card-preview">→ Phone-built Android packaging pipeline</div>
+      <div class="card-preview">phone built android packaging pipeline</div>
     </a>
 
     <a class="project-card" href="https://github.com/shivam9109/bot-detection" target="_blank" rel="noopener noreferrer">
@@ -1540,9 +1541,9 @@ footer{border-top:1px solid rgba(255,255,255,.04);}
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
       </div>
       <div class="project-title">Bot Detection System</div>
-      <div class="project-desc">Behavioural CAPTCHA — mouse tracking, honeypot fields, timing analysis. Zero dependencies, custom-built, fully open source.</div>
-      <div class="problem-stmt"><strong>Solves:</strong> API abuse &amp; bot scraping without paid CAPTCHA services.</div>
-      <div class="impact-line"><strong>Result:</strong> Drops bot traffic at edge, fully custom.</div>
+      <div class="project-desc">behavioural captcha mouse tracking honeypot fields timing analysis zero deps custom built open source</div>
+      <div class="problem-stmt">API abuse and bot scraping without paid captcha services</div>
+      <div class="impact-line">drops bot traffic at edge fully custom</div>
       <div class="project-tags">
         <span class="tag">Security</span><span class="tag purple">Flask</span><span class="tag cyan">CAPTCHA</span>
       </div>
@@ -1550,7 +1551,7 @@ footer{border-top:1px solid rgba(255,255,255,.04);}
         <span class="soon-label">Live soon</span>
         <a href="https://github.com/shivam9109/bot-detection" target="_blank" rel="noopener noreferrer" class="btn-sm btn-code" onclick="event.stopPropagation()">Code</a>
       </div>
-      <div class="card-preview">→ Behavioural analysis, zero third-party deps</div>
+      <div class="card-preview">behavioural analysis zero third party deps</div>
     </a>
 
     <a class="project-card" href="https://github.com/shivam9109/deploy-pipeline" target="_blank" rel="noopener noreferrer">
@@ -1559,9 +1560,9 @@ footer{border-top:1px solid rgba(255,255,255,.04);}
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
       </div>
       <div class="project-title">Dual Deployment Pipeline</div>
-      <div class="project-desc">Railway + Render smart routing — cold-start prevention, self-ping, sequential failover, GitHub CI/CD. Auto-deploys on every push.</div>
-      <div class="problem-stmt"><strong>Solves:</strong> Free-tier cold starts killing UX.</div>
-      <div class="impact-line"><strong>Result:</strong> Near-zero downtime, zero manual ops.</div>
+      <div class="project-desc">Railway Render smart routing cold start prevention self ping sequential failover GitHub CI/CD auto deploys on push</div>
+      <div class="problem-stmt">free tier cold starts killing UX</div>
+      <div class="impact-line">near zero downtime zero manual ops</div>
       <div class="project-tags">
         <span class="tag">Railway</span><span class="tag purple">Render</span><span class="tag cyan">CI/CD</span>
       </div>
@@ -1569,7 +1570,7 @@ footer{border-top:1px solid rgba(255,255,255,.04);}
         <span class="soon-label">Live soon</span>
         <a href="https://github.com/shivam9109/deploy-pipeline" target="_blank" rel="noopener noreferrer" class="btn-sm btn-code" onclick="event.stopPropagation()">Code</a>
       </div>
-      <div class="card-preview">→ Race-mode failover across two cloud providers</div>
+      <div class="card-preview">race mode failover across two cloud providers</div>
     </a>
 
   </div>
@@ -1584,19 +1585,19 @@ footer{border-top:1px solid rgba(255,255,255,.04);}
   <div class="whyme-grid">
     <div class="whyme-card">
       <div class="whyme-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></div>
-      <div class="whyme-text"><strong>Full Code. No Hiding.</strong><span>Every project live on GitHub — real commits, real deployments. Nothing fabricated.</span></div>
+      <div class="whyme-text"><strong>Full Code No Hiding</strong><span>every project live on github real commits real deployments nothing fabricated</span></div>
     </div>
     <div class="whyme-card">
       <div class="whyme-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
-      <div class="whyme-text"><strong>Real Systems, Real Load.</strong><span>VidSnap runs continuously on live infrastructure with dual-server failover — zero babysitting.</span></div>
+      <div class="whyme-text"><strong>Real Systems Real Load</strong><span>VidSnap runs continuously on live infra with dual server failover zero babysitting</span></div>
     </div>
     <div class="whyme-card">
       <div class="whyme-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-      <div class="whyme-text"><strong>Fast Execution.</strong><span>Same-day deploys, tight feedback loops. I ship — not plan to ship.</span></div>
+      <div class="whyme-text"><strong>Fast Execution</strong><span>same day deploys tight feedback loops I ship not plan to ship</span></div>
     </div>
     <div class="whyme-card">
       <div class="whyme-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
-      <div class="whyme-text"><strong>Security-First.</strong><span>Rate limiting, HMAC auth, CORS hardening, TOTP 2FA — every backend, every time.</span></div>
+      <div class="whyme-text"><strong>Security First</strong><span>rate limiting HMAC auth CORS hardening TOTP 2FA every backend every time</span></div>
     </div>
   </div>
 </section>
@@ -1607,22 +1608,22 @@ footer{border-top:1px solid rgba(255,255,255,.04);}
 <section id="build-philosophy">
   <div class="section-label"><span>Philosophy</span></div>
   <h2 class="section-title">How I Build</h2>
-  <p style="font-size:.78rem;color:var(--muted);max-width:520px;line-height:1.7;margin-bottom:0;">Three rules I don't negotiate on. Every project, every time.</p>
+  <p style="font-size:.78rem;color:var(--muted);max-width:520px;line-height:1.7;margin-bottom:0;">three rules I don't negotiate on every project every time</p>
   <div class="philosophy-grid">
     <div class="philosophy-card">
       <div class="phil-num">01</div>
       <div class="phil-heading">Systems before code</div>
-      <div class="phil-body">I map the problem before touching a keyboard. What breaks? What scales? What's the actual constraint? Architecture decisions made in 10 minutes are worth more than 10 hours of refactoring.</div>
+      <div class="phil-body">I map the problem before touching a keyboard what breaks what scales whats the actual constraint architecture decisions made in 10 minutes beat 10 hours of refactoring</div>
     </div>
     <div class="philosophy-card">
       <div class="phil-num">02</div>
-      <div class="phil-heading">Ship early, then sharpen</div>
-      <div class="phil-body">A working v1 live in 48 hours beats a perfect v3 sitting in a draft folder. I use real behaviour to decide what gets built next — not assumptions. VidSnap's entire feature set came from what people actually tried to do.</div>
+      <div class="phil-heading">Ship early then sharpen</div>
+      <div class="phil-body">a working v1 live in 48 hours beats a perfect v3 in a draft folder I use real behaviour to decide whats built next not assumptions VidSnaps entire feature set came from what people actually tried to do</div>
     </div>
     <div class="philosophy-card">
       <div class="phil-num">03</div>
       <div class="phil-heading">Own every layer</div>
-      <div class="phil-body">Backend, frontend, infra, security — I don't hand off. Not because I can't collaborate, but because the best products come from someone who understands the whole stack and the full trade-off at each layer.</div>
+      <div class="phil-body">backend frontend infra security I don't hand off not because I can't collaborate but because the best products come from someone who understands the whole stack and every tradeoff at each layer</div>
     </div>
   </div>
 </section>
@@ -1639,46 +1640,46 @@ footer{border-top:1px solid rgba(255,255,255,.04);}
         <div class="think-num">01</div>
         <div class="think-content">
           <strong>Define the actual problem</strong>
-          <span>Not the presented problem. What is the user actually trying to do? Most requests are solutions in disguise. I push back to find the real constraint before designing anything.</span>
+          <span>not the presented problem what is the user actually trying to do most requests are solutions in disguise I push back to find the real constraint before designing anything</span>
         </div>
       </div>
       <div class="think-step">
         <div class="think-num">02</div>
         <div class="think-content">
           <strong>Find the smallest working proof</strong>
-          <span>Can I test the core assumption with 50 lines? I build the thinnest possible slice that proves or kills the idea. VidSnap started as a 3-function Flask endpoint with no UI.</span>
+          <span>can I test the core assumption with 50 lines I build the thinnest possible slice that proves or kills the idea VidSnap started as a 3 function Flask endpoint with no UI</span>
         </div>
       </div>
       <div class="think-step">
         <div class="think-num">03</div>
         <div class="think-content">
           <strong>Harden by layer</strong>
-          <span>Auth, rate limiting, CORS, error states — not as afterthoughts but as deliberate passes. I move through the stack systematically once the core logic is proven.</span>
+          <span>auth rate limiting CORS error states not afterthoughts but deliberate passes I move through the stack systematically once the core logic is proven</span>
         </div>
       </div>
       <div class="think-step">
         <div class="think-num">04</div>
         <div class="think-content">
           <strong>Observe under real load</strong>
-          <span>I watch how real users interact before I build anything new. Logs and real traffic patterns replace guesswork entirely. What breaks in production never matches what breaks in dev.</span>
+          <span>I watch how real users interact before building anything new logs and real traffic replace guesswork entirely what breaks in production never matches what breaks in dev</span>
         </div>
       </div>
     </div>
     <div class="think-right">
       <div class="think-case">
-        <div class="think-case-label">Case Study — VidSnap</div>
-        <div class="think-case-title">The dual-server problem</div>
-        <div class="think-case-desc">Free-tier servers cold-start after 15 min idle. First instinct: warm them with pings. Real fix: sequential failover so Server 2 picks up while Server 1 wakes. Users never see a failed request. Zero cost, 2 hours of engineering.</div>
+        <div class="think-case-label">Case Study VidSnap</div>
+        <div class="think-case-title">the dual server problem</div>
+        <div class="think-case-desc">free tier servers cold start after 15 min idle first instinct warm them with pings real fix sequential failover so server 2 picks up while server 1 wakes users never see a failed request zero cost 2 hours of engineering</div>
       </div>
       <div class="think-case">
-        <div class="think-case-label">Case Study — Bot Detection</div>
-        <div class="think-case-title">No CAPTCHA library, no third party</div>
-        <div class="think-case-desc">Built behavioural analysis from scratch — mouse velocity, timing gaps, honeypot fields. Drops ~85% of automated requests at the edge. No monthly API bill, fully auditable, zero external dependency.</div>
+        <div class="think-case-label">Case Study Bot Detection</div>
+        <div class="think-case-title">no CAPTCHA library no third party</div>
+        <div class="think-case-desc">built behavioural analysis from scratch mouse velocity timing gaps honeypot fields drops 85% of automated requests at the edge no monthly API bill fully auditable zero external dependency</div>
       </div>
       <div class="think-case">
-        <div class="think-case-label">Case Study — HMAC Auth</div>
+        <div class="think-case-label">Case Study HMAC Auth</div>
         <div class="think-case-title">Stateless verification at the edge</div>
-        <div class="think-case-desc">HMAC-signed one-time tokens with expiry timestamps. No database. No session storage. Stateless verification that degrades gracefully and can't be replayed. Implemented in one middleware function.</div>
+        <div class="think-case-desc">HMAC signed one time tokens with expiry timestamps no database no session storage stateless verification that degrades gracefully and can't be replayed implemented in one middleware function</div>
       </div>
     </div>
   </div>
@@ -1692,15 +1693,15 @@ footer{border-top:1px solid rgba(255,255,255,.04);}
   <h2 class="section-title">The Builder</h2>
   <div class="about-grid" style="align-items:center;">
     <div class="about-text">
-      <p>I build and ship production-ready systems — <strong>not tutorials</strong>. Flask backends, Android tools, real deployments. Everything here is live, tested, and iterated based on real usage.</p>
-      <p>VidSnap handles continuous download requests across 50+ platforms with dual-server failover on Railway &amp; Render — independently built, zero manual intervention needed.</p>
+      <p>I build and ship production ready systems <strong>not tutorials</strong> Flask backends android tools real deployments everything here is live tested and iterated based on real usage</p>
+      <p>VidSnap handles continuous download requests across 50 plus platforms with dual server failover on Railway and Render independently built zero manual intervention needed</p>
       <div class="github-proof">
         <span><strong>8+</strong> Repos</span>
         <span><strong>200+</strong> Commits</span>
         <span><strong>Active</strong> Daily</span>
-        <span style="color:var(--accent);border-color:rgba(96,165,250,.18);">✓ Independently Built &amp; Deployed</span>
+        <span style="color:var(--accent);border-color:rgba(96,165,250,.18);">independently built and deployed</span>
       </div>
-      <p class="about-closing"><em>If it's worth building, I ship it.</em></p>
+      <p class="about-closing"><em>if its worth building I ship it</em></p>
       <div class="about-stats" style="margin-top:18px;">
         <div class="stat-card"><div class="stat-number" data-count="50" data-suffix="+">50+</div><div class="stat-label">Platforms Supported</div></div>
         <div class="stat-card"><div class="stat-number" data-count="6">6</div><div class="stat-label">Live Projects</div></div>
@@ -1714,9 +1715,9 @@ footer{border-top:1px solid rgba(255,255,255,.04);}
         <div class="ac-content">
           <span class="ac-name">Shivam Sharma</span>
           <span class="ac-role">Developer</span>
-          <span class="ac-stat">Flask · Python · Full-Stack</span>
-          <span class="ac-stat">Security-first every build</span>
-          <span class="ac-stat">Independently built &amp; deployed</span>
+          <span class="ac-stat">Flask Python Full Stack</span>
+          <span class="ac-stat">security first every build</span>
+          <span class="ac-stat">independently built and deployed</span>
         </div>
         <div class="ac-bottom">
           <div class="ac-social-btns">
@@ -1749,22 +1750,22 @@ footer{border-top:1px solid rgba(255,255,255,.04);}
 <section id="now">
   <div class="section-label"><span>Right Now</span></div>
   <h2 class="section-title">What I'm On</h2>
-  <p style="font-size:.78rem;color:var(--muted);margin-bottom:4px;line-height:1.7;max-width:500px;">Active work, active study. Updated periodically — this is what's actually occupying headspace.</p>
+  <p style="font-size:.78rem;color:var(--muted);margin-bottom:4px;line-height:1.7;max-width:500px;">active work active study updated periodically this is whats actually occupying headspace</p>
   <div class="now-grid">
     <div class="now-card">
       <div class="now-label"><span class="now-dot"></span>Building</div>
       <div class="now-value">VidSnap v3</div>
-      <div class="now-sub">Expanding platform coverage, hardening the API surface, adding usage analytics without a third-party SDK.</div>
+      <div class="now-sub">expanding platform coverage hardening the API surface adding usage analytics without a third party SDK</div>
     </div>
     <div class="now-card">
       <div class="now-label"><span class="now-dot"></span>Studying</div>
       <div class="now-value">System Design Internals</div>
-      <div class="now-sub">Rate limiting strategies, distributed caching, consistent hashing — studying how production infra actually works at scale.</div>
+      <div class="now-sub">rate limiting strategies distributed caching consistent hashing studying how production infra actually works at scale</div>
     </div>
     <div class="now-card">
       <div class="now-label"><span class="now-dot"></span>Exploring</div>
       <div class="now-value">LLM + Flask Integration</div>
-      <div class="now-sub">Experimenting with local inference, prompt chaining, and when AI is actually the right tool vs overkill for a problem.</div>
+      <div class="now-sub">experimenting with local inference prompt chaining and when AI is actually the right tool vs overkill for a problem</div>
     </div>
   </div>
 </section>
@@ -1774,8 +1775,8 @@ footer{border-top:1px solid rgba(255,255,255,.04);}
 <!-- CONTACT -->
 <section id="contact" style="max-width:550px;margin:0 auto;text-align:center;">
   <div class="section-label" style="justify-content:center;"><span>Contact</span></div>
-  <h2 class="section-title" style="text-wrap:balance;">Let's build something serious.</h2>
-  <p style="font-size:.82rem;color:var(--text2);margin-bottom:8px;line-height:1.75;max-width:440px;margin-left:auto;margin-right:auto;">Open for engineering roles and complex system architecture. If the problem is real — I want to hear about it.</p>
+  <h2 class="section-title" style="text-wrap:balance;">lets build something serious</h2>
+  <p style="font-size:.82rem;color:var(--text2);margin-bottom:8px;line-height:1.75;max-width:440px;margin-left:auto;margin-right:auto;">open for engineering roles and complex system architecture if the problem is real I want to hear about it</p>
 
   <div class="contact-wrapper">
     <div class="contact-top">
@@ -1787,9 +1788,10 @@ footer{border-top:1px solid rgba(255,255,255,.04);}
         <div class="contact-link-value">Email</div>
         <div class="contact-link-arrow">sharmashivam9109@gmail.com</div>
       </a>
+      <!-- FIX: broken GitHub SVG path corrected -->
       <a class="contact-link-card github-highlight" href="https://github.com/shivam9109" target="_blank" rel="noopener noreferrer">
         <div class="contact-link-icon">
-          <svg class="icon-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          <svg class="icon-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
         </div>
         <div class="contact-link-label">Code</div>
         <div class="contact-link-value">GitHub</div>
@@ -1814,7 +1816,7 @@ footer{border-top:1px solid rgba(255,255,255,.04);}
     </div>
 
     <div class="contact-form-wrap">
-      <h3>Start a Conversation</h3>
+      <h3>start a conversation</h3>
       <div class="form-row">
         <div class="form-group"><label>Name *</label><input type="text" id="cf-name" placeholder="Your name" autocomplete="name"/></div>
         <div class="form-group"><label>Email *</label><input type="email" id="cf-email" placeholder="your@email.com" autocomplete="email"/></div>
@@ -1828,8 +1830,8 @@ footer{border-top:1px solid rgba(255,255,255,.04);}
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:6px;"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
         Send Message
       </button>
-      <div id="cf-success">✓ Opening mail app — just hit send.</div>
-      <div id="cf-error">⚠ Please fill Name, Email, and Project Details.</div>
+      <div id="cf-success">opening mail app just hit send</div>
+      <div id="cf-error">fill in name email and project details</div>
     </div>
   </div>
 </section>
@@ -1840,7 +1842,7 @@ footer{border-top:1px solid rgba(255,255,255,.04);}
     <div class="footer-bottom">
       <div class="footer-left">
         <div class="footer-copy">© 2026 Shivam Sharma</div>
-        <div class="footer-tagline">Built for Performance · 2026</div>
+        <div class="footer-tagline">built late nights with Flask</div>
       </div>
       <div class="footer-links">
         <a href="https://github.com/shivam9109" target="_blank" rel="noopener">
@@ -1872,8 +1874,6 @@ var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion:reduce)').
 
 /* ════════════════════════════════════════════════════════
    PERF FIX #1 — Single global mouse tracker (passive)
-   All handlers read from _mx/_my instead of separate
-   mousemove listeners per feature.
    ════════════════════════════════════════════════════════ */
 var _mx = -9999, _my = -9999;
 document.addEventListener('mousemove', function(e){
@@ -1908,8 +1908,6 @@ window.addEventListener('load', function(){
 
 /* ════════════════════════════════════════════════════════
    PERF FIX #2 — Single master RAF loop
-   Cursor dot, ring lag, and orb parallax all run inside
-   ONE requestAnimationFrame — no redundant frames.
    ════════════════════════════════════════════════════════ */
 var _cur = null, _ring = null;
 var _rx = 0, _ry = 0;
@@ -1966,7 +1964,6 @@ function initMasterLoop(){
 
 /* ════════════════════════════════════════════════════════
    PERF FIX #3 — Particles (reduced connection distance)
-   O(n²) loop only checks 80px vs 105px — ~42% less work
    ════════════════════════════════════════════════════════ */
 function initParticles(){
   var canvas = document.getElementById('ptc-canvas');
@@ -2015,7 +2012,6 @@ function initParticles(){
       ctx.fill();
     });
 
-    /* PERF FIX: connection distance 105 → 80 */
     var CONN = 80;
     for(var i = 0; i < pts.length; i++){
       for(var j = i+1; j < pts.length; j++){
@@ -2340,11 +2336,8 @@ function addRipple(el){
 
 /* ════════════════════════════════════════════════════════
    ANIME COVER IMAGES — AniList GraphQL API
-   Fetches real official cover art for each title.
-   CSS gradient fallback stays visible until image loads.
    ════════════════════════════════════════════════════════ */
 function loadAnimeCoverImages(){
-  /* GraphQL aliases map directly to cover keys */
   var gql = [
     '{ ',
     'sl:  Media(search:"Solo Leveling",   type:ANIME) { coverImage{extraLarge} }',
@@ -2356,7 +2349,6 @@ function loadAnimeCoverImages(){
     '}'
   ].join(' ');
 
-  /* Map alias → .cv-art class */
   var COVER_MAP = {
     sl:  '.cv-solo',
     orv: '.cv-orv',
@@ -2380,7 +2372,6 @@ function loadAnimeCoverImages(){
       var el = document.querySelector(COVER_MAP[alias]);
       if(!el) return;
 
-      /* Inject image — fades in over CSS gradient on load */
       var img = document.createElement('img');
       img.alt = alias;
       img.loading = 'lazy';
@@ -2399,7 +2390,7 @@ function loadAnimeCoverImages(){
       ].join(';');
 
       img.onload = function(){ img.style.opacity = '1'; };
-      img.onerror = function(){ img.remove(); }; /* keep gradient on fail */
+      img.onerror = function(){ img.remove(); };
       img.src = media.coverImage.extraLarge;
       el.insertBefore(img, el.firstChild);
     });
@@ -2407,10 +2398,10 @@ function loadAnimeCoverImages(){
   .catch(function(){ /* silently keep CSS gradients */ });
 }
 
-/* ── Boot ──────────────────────────────────────────────────────  */
+/* ── Boot ────────────────────────────────────────────────────── */
 function boot(){
   initNav();
-  initMasterLoop();      /* cursor + ring + orb parallax in one RAF */
+  initMasterLoop();
   initParticles();
   initTilt();
   initCreatorTilt();
@@ -2423,7 +2414,7 @@ function boot(){
   initMagnetic();
   initCounters();
   initForm();
-  loadAnimeCoverImages(); /* 6 real anime covers from AniList */
+  loadAnimeCoverImages();
   var submitBtn = document.getElementById('cf-submit');
   if(submitBtn) addRipple(submitBtn);
 }

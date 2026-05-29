@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aurum — Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #080808;
+  --bg2: #0d0d0d;
+  --surface: #111111;
+  --surface2: #161616;
+  --border: #1c1c1c;
+  --border2: #242424;
+  --gold: #c9a84c;
+  --gold2: #e8c97a;
+  --gold-dim: #7a6130;
+  --gold-glow: rgba(201,168,76,0.12);
+  --text: #ede5d5;
+  --text2: #b0a898;
+  --muted: #5a554e;
+  --green: #4caf7d;
+  --green-dim: rgba(76,175,125,0.12);
+  --red: #e05252;
+  --red-dim: rgba(224,82,82,0.12);
+  --blue: #5b9cf6;
+  --blue-dim: rgba(91,156,246,0.12);
+  --purple: #a78bfa;
+  --purple-dim: rgba(167,139,250,0.12);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;min-height:100vh;}
+
+/* ═══ SCROLLBAR ═══ */
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px;}
+
+/* ═══ LOGIN ═══ */
+#login-screen{
+  display:flex;align-items:center;justify-content:center;
+  min-height:100vh;padding:24px;
+  background: radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.06) 0%, transparent 60%);
+}
+.login-wrap{width:100%;max-width:400px;}
+.login-logo{text-align:center;margin-bottom:48px;}
+.login-logo-mark{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:64px;height:64px;border-radius:16px;
+  background:linear-gradient(135deg,var(--gold-dim),transparent);
+  border:1px solid var(--gold-dim);
+  font-size:28px;font-weight:800;color:var(--gold);
+  margin-bottom:16px;letter-spacing:-1px;
+}
+.login-title{font-size:36px;font-weight:800;color:var(--gold);letter-spacing:-1.5px;}
+.login-sub{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:4px;text-transform:uppercase;margin-top:6px;}
+.login-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:20px;padding:36px;
+  box-shadow:0 0 60px rgba(0,0,0,0.6);
+}
+.login-card-title{font-size:16px;font-weight:700;color:var(--text2);margin-bottom:28px;letter-spacing:0.5px;}
+.field{margin-bottom:18px;}
+.field label{
+  display:block;font-family:'JetBrains Mono',monospace;
+  font-size:10px;color:var(--muted);letter-spacing:3px;
+  text-transform:uppercase;margin-bottom:8px;
+}
+.field input{
+  width:100%;background:var(--bg2);
+  border:1px solid var(--border2);border-radius:10px;
+  padding:13px 16px;color:var(--text);
+  font-family:'JetBrains Mono',monospace;font-size:13px;
+  outline:none;transition:border-color 0.2s,box-shadow 0.2s;
+}
+.field input:focus{border-color:var(--gold-dim);box-shadow:0 0 0 3px var(--gold-glow);}
+.field input::placeholder{color:var(--muted);}
+.btn-primary{
+  width:100%;background:var(--gold);color:#000;
+  border:none;border-radius:10px;padding:15px;
+  font-family:'Syne',sans-serif;font-size:14px;font-weight:800;
+  letter-spacing:1px;cursor:pointer;margin-top:4px;
+  transition:all 0.2s;position:relative;overflow:hidden;
+}
+.btn-primary::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,0.1),transparent);
+}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(201,168,76,0.3);}
+.btn-primary:active{transform:translateY(0);}
+.btn-primary:disabled{opacity:0.4;cursor:not-allowed;transform:none;box-shadow:none;}
+.err{
+  background:var(--red-dim);border:1px solid rgba(224,82,82,0.2);
+  border-radius:8px;padding:11px 14px;
+  font-family:'JetBrains Mono',monospace;font-size:12px;
+  color:var(--red);margin-top:14px;display:none;
+}
+
+/* ═══ DASHBOARD ═══ */
+#dashboard{display:none;min-height:100vh;}
+
+/* Sidebar */
+.sidebar{
+  position:fixed;top:0;left:0;bottom:0;width:220px;
+  background:var(--surface);border-right:1px solid var(--border);
+  padding:28px 0;z-index:100;
+  display:flex;flex-direction:column;
+}
+.sidebar-logo{padding:0 24px 32px;border-bottom:1px solid var(--border);}
+.sidebar-logo-text{font-size:24px;font-weight:800;color:var(--gold);letter-spacing:-1px;}
+.sidebar-logo-sub{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;margin-top:3px;}
+.sidebar-nav{padding:24px 12px;flex:1;}
+.nav-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;padding:0 12px;margin-bottom:8px;}
+.nav-item{
+  display:flex;align-items:center;gap:10px;
+  padding:10px 12px;border-radius:8px;
+  font-size:13px;font-weight:600;color:var(--text2);
+  cursor:pointer;transition:all 0.15s;margin-bottom:2px;
+}
+.nav-item:hover{background:var(--surface2);color:var(--text);}
+.nav-item.active{background:var(--gold-glow);color:var(--gold);border:1px solid var(--gold-dim);}
+.nav-icon{font-size:16px;width:20px;text-align:center;}
+.sidebar-bottom{padding:20px 24px;border-top:1px solid var(--border);}
+.btn-logout{
+  width:100%;background:transparent;border:1px solid var(--border2);
+  color:var(--muted);border-radius:8px;padding:9px;
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  cursor:pointer;letter-spacing:1px;transition:all 0.2s;
+}
+.btn-logout:hover{border-color:var(--red);color:var(--red);}
+
+/* Main content */
+.main{margin-left:220px;padding:32px;}
+.page{display:none;}
+.page.active{display:block;}
+
+/* Top bar */
+.topbar{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:32px;
+}
+.page-title{font-size:24px;font-weight:800;color:var(--text);letter-spacing:-0.5px;}
+.page-sub{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:4px;}
+.topbar-actions{display:flex;gap:10px;align-items:center;}
+.btn-sm{
+  background:var(--surface);border:1px solid var(--border2);
+  color:var(--text2);border-radius:8px;padding:9px 16px;
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  cursor:pointer;transition:all 0.2s;letter-spacing:0.5px;
+}
+.btn-sm:hover{border-color:var(--gold-dim);color:var(--gold);}
+.btn-sm.gold{background:var(--gold);color:#000;border-color:var(--gold);font-weight:600;}
+.btn-sm.gold:hover{opacity:0.85;}
+
+/* Live indicator */
+.live-badge{
+  display:flex;align-items:center;gap:6px;
+  font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--green);
+  background:var(--green-dim);border:1px solid rgba(76,175,125,0.2);
+  border-radius:20px;padding:5px 12px;
+}
+.live-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
+
+/* KPI Grid */
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px;}
+.kpi{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:14px;padding:22px;position:relative;overflow:hidden;
+  transition:border-color 0.2s;
+}
+.kpi:hover{border-color:var(--border2);}
+.kpi::before{
+  content:'';position:absolute;top:0;right:0;
+  width:80px;height:80px;border-radius:50%;
+  transform:translate(20px,-20px);opacity:0.06;
+}
+.kpi.gold::before{background:var(--gold);}
+.kpi.green::before{background:var(--green);}
+.kpi.blue::before{background:var(--blue);}
+.kpi.purple::before{background:var(--purple);}
+.kpi-icon{font-size:20px;margin-bottom:12px;}
+.kpi-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;}
+.kpi-value{font-size:36px;font-weight:800;letter-spacing:-1.5px;line-height:1;}
+.kpi.gold .kpi-value{color:var(--gold);}
+.kpi.green .kpi-value{color:var(--green);}
+.kpi.blue .kpi-value{color:var(--blue);}
+.kpi.purple .kpi-value{color:var(--purple);}
+.kpi-delta{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);margin-top:6px;}
+
+/* Charts row */
+.charts-row{display:grid;grid-template-columns:2fr 1fr;gap:14px;margin-bottom:28px;}
+.chart-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:14px;padding:24px;
+}
+.chart-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px;}
+.chart-sub{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:20px;}
+.chart-area{position:relative;height:160px;}
+canvas{width:100%!important;}
+
+/* Donut */
+.donut-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;}
+.donut-canvas{width:130px!important;height:130px!important;}
+.donut-legend{margin-top:16px;width:100%;}
+.legend-item{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+.legend-dot{width:8px;height:8px;border-radius:50%;margin-right:8px;flex-shrink:0;}
+.legend-label{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text2);display:flex;align-items:center;}
+.legend-val{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);}
+
+/* Table */
+.table-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:14px;overflow:hidden;
+}
+.table-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:20px 24px;border-bottom:1px solid var(--border);
+}
+.table-title{font-size:14px;font-weight:700;color:var(--text);}
+.search-wrap{position:relative;}
+.search-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:12px;}
+.search-input{
+  background:var(--bg2);border:1px solid var(--border2);border-radius:8px;
+  padding:8px 12px 8px 32px;color:var(--text);
+  font-family:'JetBrains Mono',monospace;font-size:12px;
+  outline:none;width:220px;transition:border-color 0.2s;
+}
+.search-input:focus{border-color:var(--gold-dim);}
+.search-input::placeholder{color:var(--muted);}
+table{width:100%;border-collapse:collapse;}
+thead tr{background:var(--bg2);}
+th{
+  font-family:'JetBrains Mono',monospace;font-size:9px;
+  color:var(--muted);letter-spacing:2px;text-transform:uppercase;
+  padding:12px 20px;text-align:left;font-weight:500;
+  border-bottom:1px solid var(--border);
+}
+tbody tr{border-bottom:1px solid var(--border);transition:background 0.1s;}
+tbody tr:last-child{border-bottom:none;}
+tbody tr:hover{background:rgba(255,255,255,0.02);}
+td{padding:14px 20px;font-size:13px;vertical-align:middle;}
+.user-cell{display:flex;align-items:center;gap:12px;}
+.avatar{
+  width:34px;height:34px;border-radius:50%;
+  object-fit:cover;flex-shrink:0;border:1px solid var(--border2);
+}
+.avatar-ph{
+  width:34px;height:34px;border-radius:50%;
+  background:linear-gradient(135deg,var(--gold-dim),var(--border));
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:700;color:var(--gold);flex-shrink:0;
+}
+.uname{font-weight:700;color:var(--text);font-size:13px;}
+.uemail{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);margin-top:2px;}
+.date-txt{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);}
+.badge{
+  display:inline-block;padding:3px 10px;border-radius:20px;
+  font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;
+}
+.badge-new{background:var(--green-dim);color:var(--green);border:1px solid rgba(76,175,125,0.2);}
+.badge-old{background:var(--surface2);color:var(--muted);border:1px solid var(--border);}
+.table-footer{
+  padding:14px 24px;border-top:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  background:var(--bg2);
+}
+.table-count{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);}
+
+/* Empty / loading */
+.t-empty{text-align:center;padding:60px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);}
+.spinner{
+  display:inline-block;width:18px;height:18px;
+  border:2px solid var(--border2);border-top-color:var(--gold);
+  border-radius:50%;animation:spin 0.7s linear infinite;
+  margin-right:8px;vertical-align:middle;
+}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+/* Activity page */
+.activity-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px;}
+.info-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:14px;padding:24px;
+}
+.info-title{font-size:13px;font-weight:700;color:var(--text);margin-bottom:16px;}
+.info-row{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:10px 0;border-bottom:1px solid var(--border);
+}
+.info-row:last-child{border-bottom:none;}
+.info-key{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);}
+.info-val{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text2);font-weight:500;}
+
+/* Timeline */
+.timeline{padding:0;}
+.tl-item{
+  display:flex;gap:14px;padding:14px 0;
+  border-bottom:1px solid var(--border);
+}
+.tl-item:last-child{border-bottom:none;}
+.tl-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--gold);margin-top:4px;flex-shrink:0;
+}
+.tl-name{font-size:13px;font-weight:600;color:var(--text);}
+.tl-email{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);margin-top:2px;}
+.tl-date{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);margin-left:auto;flex-shrink:0;}
+
+/* Mobile */
+@media(max-width:900px){
+  .sidebar{width:60px;}
+  .sidebar-logo,.sidebar-logo-sub,.nav-item span,.sidebar-bottom .btn-logout span{display:none;}
+  .nav-item{justify-content:center;padding:12px;}
+  .sidebar-bottom{padding:12px;}
+  .main{margin-left:60px;padding:20px;}
+  .kpi-grid{grid-template-columns:repeat(2,1fr);}
+  .charts-row{grid-template-columns:1fr;}
+}
+@media(max-width:600px){
+  .kpi-grid{grid-template-columns:repeat(2,1fr);}
+  th:nth-child(3),td:nth-child(3),th:nth-child(4),td:nth-child(4){display:none;}
+  .search-input{width:140px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ LOGIN ═══ -->
+<div id="login-screen">
+  <div class="login-wrap">
+    <div class="login-logo">
+      <div class="login-logo-mark">A</div>
+      <div class="login-title">Aurum</div>
+      <div class="login-sub">Admin Intelligence</div>
+    </div>
+    <div class="login-card">
+      <div class="login-card-title">Authenticate to continue</div>
+      <div class="field">
+        <label>Backend URL</label>
+        <input type="url" id="app-url" placeholder="https://your-app.onrender.com" />
+      </div>
+      <div class="field">
+        <label>Admin Key</label>
+        <input type="password" id="admin-key" placeholder="••••••••••••" />
+      </div>
+      <button class="btn-primary" id="login-btn" onclick="doLogin()">Access Dashboard →</button>
+      <div class="err" id="err"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ DASHBOARD ═══ -->
+<div id="dashboard">
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-text">Aurum</div>
+      <div class="sidebar-logo-sub">Admin</div>
+    </div>
+    <div class="sidebar-nav">
+      <div class="nav-label">Navigation</div>
+      <div class="nav-item active" onclick="showPage('overview')">
+        <span class="nav-icon">📊</span><span>Overview</span>
+      </div>
+      <div class="nav-item" onclick="showPage('users')">
+        <span class="nav-icon">👥</span><span>Users</span>
+      </div>
+      <div class="nav-item" onclick="showPage('activity')">
+        <span class="nav-icon">⚡</span><span>Activity</span>
+      </div>
+    </div>
+    <div class="sidebar-bottom">
+      <button class="btn-logout" onclick="doLogout()"><span>⬡ Logout</span></button>
+    </div>
+  </div>
+
+  <!-- Main -->
+  <div class="main">
+
+    <!-- OVERVIEW PAGE -->
+    <div class="page active" id="page-overview">
+      <div class="topbar">
+        <div>
+          <div class="page-title">Overview</div>
+          <div class="page-sub" id="last-sync">Syncing...</div>
+        </div>
+        <div class="topbar-actions">
+          <div class="live-badge"><span class="live-dot"></span>LIVE</div>
+          <button class="btn-sm" onclick="loadUsers()">↻ Refresh</button>
+          <button class="btn-sm gold" onclick="exportCSV()">↓ Export CSV</button>
+        </div>
+      </div>
+
+      <!-- KPIs -->
+      <div class="kpi-grid">
+        <div class="kpi gold">
+          <div class="kpi-icon">👤</div>
+          <div class="kpi-label">Total Users</div>
+          <div class="kpi-value" id="k-total">—</div>
+          <div class="kpi-delta" id="k-total-d"></div>
+        </div>
+        <div class="kpi green">
+          <div class="kpi-icon">📅</div>
+          <div class="kpi-label">This Month</div>
+          <div class="kpi-value" id="k-month">—</div>
+          <div class="kpi-delta" id="k-month-d"></div>
+        </div>
+        <div class="kpi blue">
+          <div class="kpi-icon">⚡</div>
+          <div class="kpi-label">This Week</div>
+          <div class="kpi-value" id="k-week">—</div>
+          <div class="kpi-delta" id="k-week-d"></div>
+        </div>
+        <div class="kpi purple">
+          <div class="kpi-icon">🌅</div>
+          <div class="kpi-label">Today</div>
+          <div class="kpi-value" id="k-today">—</div>
+          <div class="kpi-delta" id="k-today-d"></div>
+        </div>
+      </div>
+
+      <!-- Charts -->
+      <div class="charts-row">
+        <div class="chart-card">
+          <div class="chart-title">User Growth</div>
+          <div class="chart-sub">New signups over last 14 days</div>
+          <div class="chart-area"><canvas id="growth-chart"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title">Join Distribution</div>
+          <div class="chart-sub">By time period</div>
+          <div class="donut-wrap">
+            <canvas class="donut-canvas" id="donut-chart"></canvas>
+            <div class="donut-legend" id="donut-legend"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent users table -->
+      <div class="table-card">
+        <div class="table-header">
+          <div class="table-title">Recent Signups</div>
+        </div>
+        <div id="recent-table-content">
+          <div class="t-empty"><span class="spinner"></span>Loading...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- USERS PAGE -->
+    <div class="page" id="page-users">
+      <div class="topbar">
+        <div>
+          <div class="page-title">All Users</div>
+          <div class="page-sub">Complete user registry</div>
+        </div>
+        <div class="topbar-actions">
+          <button class="btn-sm" onclick="loadUsers()">↻ Refresh</button>
+          <button class="btn-sm gold" onclick="exportCSV()">↓ CSV</button>
+        </div>
+      </div>
+      <div class="table-card">
+        <div class="table-header">
+          <div class="table-title" id="users-count-title">Users</div>
+          <div class="search-wrap">
+            <span class="search-icon">⌕</span>
+            <input class="search-input" id="search-box" type="text" placeholder="Search name, email..." oninput="filterUsers()" />
+          </div>
+        </div>
+        <div id="users-table-content">
+          <div class="t-empty"><span class="spinner"></span>Loading...</div>
+        </div>
+        <div class="table-footer">
+          <div class="table-count" id="users-footer-count">—</div>
+          <button class="btn-sm" onclick="exportCSV()">Export CSV</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ACTIVITY PAGE -->
+    <div class="page" id="page-activity">
+      <div class="topbar">
+        <div>
+          <div class="page-title">Activity</div>
+          <div class="page-sub">Signup timeline & insights</div>
+        </div>
+      </div>
+      <div class="activity-grid">
+        <div class="info-card">
+          <div class="info-title">📈 Growth Insights</div>
+          <div id="insights-content">
+            <div class="t-empty">Loading...</div>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="info-title">📅 Signup Heatmap</div>
+          <div id="heatmap-content">
+            <div class="t-empty">Loading...</div>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-title">🕒 Recent Activity Timeline</div>
+        <div id="timeline-content">
+          <div class="t-empty">Loading...</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+let allUsers = [];
+let savedUrl = '';
+let savedKey = '';
+let growthChart = null;
+let donutChart  = null;
+
+// ── AUTH ──
+window.onload = () => {
+  const u = localStorage.getItem('aurum_url');
+  const k = localStorage.getItem('aurum_key');
+  if (u) document.getElementById('app-url').value = u;
+  if (k) document.getElementById('admin-key').value = k;
+};
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && document.getElementById('login-screen').style.display !== 'none') doLogin();
+});
+
+async function doLogin() {
+  const url = document.getElementById('app-url').value.trim().replace(/\/$/,'');
+  const key = document.getElementById('admin-key').value.trim();
+  const btn = document.getElementById('login-btn');
+  const err = document.getElementById('err');
+  if (!url || !key) { showErr('Fill in both fields.'); return; }
+  btn.disabled = true; btn.textContent = 'Connecting...'; err.style.display = 'none';
+  try {
+    const res = await fetch(`${url}/api/admin/users?key=${encodeURIComponent(key)}`);
+    if (res.status === 401) { showErr('Invalid admin key.'); return; }
+    if (!res.ok) { showErr(`Server error ${res.status}`); return; }
+    const data = await res.json();
+    savedUrl = url; savedKey = key;
+    localStorage.setItem('aurum_url', url);
+    localStorage.setItem('aurum_key', key);
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('dashboard').style.display = 'block';
+    renderAll(data.users || []);
+    setInterval(() => loadUsers(), 30000);
+  } catch(e) {
+    showErr('Cannot connect. Check the URL.');
+  } finally {
+    btn.disabled = false; btn.textContent = 'Access Dashboard →';
+  }
+}
+
+async function loadUsers() {
+  try {
+    const res = await fetch(`${savedUrl}/api/admin/users?key=${encodeURIComponent(savedKey)}`);
+    const data = await res.json();
+    renderAll(data.users || []);
+  } catch(e) {}
+}
+
+function doLogout() {
+  localStorage.removeItem('aurum_url'); localStorage.removeItem('aurum_key');
+  savedUrl = ''; savedKey = ''; allUsers = [];
+  document.getElementById('dashboard').style.display = 'none';
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('app-url').value = '';
+  document.getElementById('admin-key').value = '';
+}
+
+function showErr(msg) {
+  const e = document.getElementById('err');
+  e.textContent = msg; e.style.display = 'block';
+  document.getElementById('login-btn').disabled = false;
+  document.getElementById('login-btn').textContent = 'Access Dashboard →';
+}
+
+// ── PAGES ──
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  event.currentTarget.classList.add('active');
+}
+
+// ── RENDER ALL ──
+function renderAll(users) {
+  allUsers = users;
+  const now = new Date();
+  document.getElementById('last-sync').textContent = 'Last sync: ' + now.toLocaleTimeString();
+
+  // KPIs
+  const month = users.filter(u => inPeriod(u.created_at, 'month')).length;
+  const week  = users.filter(u => inPeriod(u.created_at, 'week')).length;
+  const today = users.filter(u => inPeriod(u.created_at, 'today')).length;
+
+  document.getElementById('k-total').textContent  = users.length;
+  document.getElementById('k-month').textContent  = month;
+  document.getElementById('k-week').textContent   = week;
+  document.getElementById('k-today').textContent  = today;
+  document.getElementById('k-total-d').textContent = `${week} this week`;
+  document.getElementById('k-month-d').textContent = `${today} today`;
+  document.getElementById('k-week-d').textContent  = 'Last 7 days';
+  document.getElementById('k-today-d').textContent = 'Since midnight';
+
+  renderGrowthChart(users);
+  renderDonut(users);
+  renderRecentTable(users);
+  renderUsersTable(users);
+  renderActivity(users);
+}
+
+function inPeriod(dateStr, period) {
+  if (!dateStr) return false;
+  const d = new Date(dateStr), now = new Date();
+  if (period === 'today') return d.toDateString() === now.toDateString();
+  if (period === 'week') { const w = new Date(now); w.setDate(w.getDate()-7); return d >= w; }
+  if (period === 'month') return d.getMonth() === now.getMonth() && d.getFullYear() === now.getFullYear();
+  return false;
+}
+
+// ── GROWTH CHART ──
+function renderGrowthChart(users) {
+  const days = 14;
+  const now = new Date();
+  const labels = [], counts = [];
+  for (let i = days-1; i >= 0; i--) {
+    const d = new Date(now); d.setDate(d.getDate()-i);
+    labels.push(d.toLocaleDateString('en-IN',{day:'2-digit',month:'short'}));
+    counts.push(users.filter(u => {
+      if (!u.created_at) return false;
+      return new Date(u.created_at).toDateString() === d.toDateString();
+    }).length);
+  }
+  const ctx = document.getElementById('growth-chart').getContext('2d');
+  if (growthChart) growthChart.destroy();
+  growthChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [{
+        data: counts,
+        borderColor: '#c9a84c',
+        backgroundColor: 'rgba(201,168,76,0.08)',
+        borderWidth: 2,
+        pointBackgroundColor: '#c9a84c',
+        pointRadius: 3,
+        pointHoverRadius: 5,
+        fill: true,
+        tension: 0.4,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false }, tooltip: {
+        backgroundColor: '#161616', borderColor: '#242424', borderWidth: 1,
+        titleColor: '#c9a84c', bodyColor: '#b0a898',
+        titleFont: { family: 'JetBrains Mono', size: 11 },
+        bodyFont: { family: 'JetBrains Mono', size: 11 },
+      }},
+      scales: {
+        x: { grid: { color: '#1c1c1c' }, ticks: { color: '#5a554e', font: { family: 'JetBrains Mono', size: 10 } } },
+        y: { grid: { color: '#1c1c1c' }, ticks: { color: '#5a554e', font: { family: 'JetBrains Mono', size: 10 }, stepSize: 1 }, min: 0 }
+      }
+    }
+  });
+}
+
+// ── DONUT CHART ──
+function renderDonut(users) {
+  const today = users.filter(u => inPeriod(u.created_at,'today')).length;
+  const week  = users.filter(u => inPeriod(u.created_at,'week')).length - today;
+  const month = users.filter(u => inPeriod(u.created_at,'month')).length - week - today;
+  const older = users.length - month - week - today;
+  const data   = [today, week, month, older];
+  const labels = ['Today','This Week','This Month','Older'];
+  const colors = ['#c9a84c','#4caf7d','#5b9cf6','#a78bfa'];
+
+  const ctx = document.getElementById('donut-chart').getContext('2d');
+  if (donutChart) donutChart.destroy();
+  donutChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: { labels, datasets: [{ data, backgroundColor: colors, borderWidth: 0, hoverOffset: 4 }] },
+    options: {
+      responsive: false, maintainAspectRatio: false, cutout: '68%',
+      plugins: { legend: { display: false }, tooltip: {
+        backgroundColor:'#161616', borderColor:'#242424', borderWidth:1,
+        titleColor:'#ede5d5', bodyColor:'#b0a898',
+        titleFont:{family:'JetBrains Mono',size:11}, bodyFont:{family:'JetBrains Mono',size:11},
+      }}
+    }
+  });
+
+  const leg = document.getElementById('donut-legend');
+  leg.innerHTML = labels.map((l,i) => `
+    <div class="legend-item">
+      <div class="legend-label"><span class="legend-dot" style="background:${colors[i]}"></span>${l}</div>
+      <div class="legend-val">${data[i]}</div>
+    </div>`).join('');
+}
+
+// ── RECENT TABLE ──
+function renderRecentTable(users) {
+  const recent = [...users].sort((a,b) => new Date(b.created_at||0) - new Date(a.created_at||0)).slice(0,5);
+  document.getElementById('recent-table-content').innerHTML = buildTableHTML(recent);
+}
+
+// ── USERS TABLE ──
+function renderUsersTable(users) {
+  document.getElementById('users-count-title').textContent = `All Users (${users.length})`;
+  document.getElementById('users-footer-count').textContent = `${users.length} total users`;
+  document.getElementById('users-table-content').innerHTML = buildTableHTML(users);
+}
+
+function filterUsers() {
+  const q = document.getElementById('search-box').value.toLowerCase();
+  const filtered = q ? allUsers.filter(u =>
+    (u.name||'').toLowerCase().includes(q) || (u.email||'').toLowerCase().includes(q)
+  ) : allUsers;
+  document.getElementById('users-table-content').innerHTML = buildTableHTML(filtered);
+  document.getElementById('users-footer-count').textContent = `${filtered.length} of ${allUsers.length} users`;
+}
+
+function buildTableHTML(users) {
+  if (!users.length) return '<div class="t-empty">No users found.</div>';
+  const now = new Date();
+  const rows = users.map(u => {
+    const init = (u.name||u.email||'?')[0].toUpperCase();
+    const av = u.picture
+      ? `<img class="avatar" src="${u.picture}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/><div class="avatar-ph" style="display:none">${init}</div>`
+      : `<div class="avatar-ph">${init}</div>`;
+    const date = u.created_at ? new Date(u.created_at).toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'}) : '—';
+    const isNew = u.created_at && (now - new Date(u.created_at)) < 7*24*3600*1000;
+    const badge = isNew ? '<span class="badge badge-new">NEW</span>' : '<span class="badge badge-old">USER</span>';
+    return `<tr>
+      <td><div class="user-cell">${av}<div><div class="uname">${esc(u.name||'Unknown')}</div><div class="uemail">${esc(u.email||'—')}</div></div></div></td>
+      <td class="date-txt">${date}</td>
+      <td>${badge}</td>
+    </tr>`;
+  }).join('');
+  return `<table><thead><tr><th>User</th><th>Joined</th><th>Status</th></tr></thead><tbody>${rows}</tbody></table>`;
+}
+
+// ── ACTIVITY PAGE ──
+function renderActivity(users) {
+  // Insights
+  const sorted = [...users].sort((a,b) => new Date(b.created_at||0)-new Date(a.created_at||0));
+  const total = users.length;
+  const week  = users.filter(u => inPeriod(u.created_at,'week')).length;
+  const month = users.filter(u => inPeriod(u.created_at,'month')).length;
+  const avgPerDay = total > 0 ? (total / Math.max(1, daysSinceFirst(users))).toFixed(1) : '0';
+
+  document.getElementById('insights-content').innerHTML = `
+    <div class="info-row"><span class="info-key">Total Users</span><span class="info-val">${total}</span></div>
+    <div class="info-row"><span class="info-key">This Week</span><span class="info-val">${week}</span></div>
+    <div class="info-row"><span class="info-key">This Month</span><span class="info-val">${month}</span></div>
+    <div class="info-row"><span class="info-key">Avg / Day</span><span class="info-val">${avgPerDay}</span></div>
+    <div class="info-row"><span class="info-key">First Signup</span><span class="info-val">${sorted.length ? new Date(sorted[sorted.length-1].created_at).toLocaleDateString('en-IN') : '—'}</span></div>
+    <div class="info-row"><span class="info-key">Latest Signup</span><span class="info-val">${sorted.length ? new Date(sorted[0].created_at).toLocaleDateString('en-IN') : '—'}</span></div>
+  `;
+
+  // Day heatmap
+  const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const dayCounts = Array(7).fill(0);
+  users.forEach(u => { if (u.created_at) dayCounts[new Date(u.created_at).getDay()]++; });
+  const maxD = Math.max(...dayCounts, 1);
+  document.getElementById('heatmap-content').innerHTML = days.map((d,i) => `
+    <div class="info-row">
+      <span class="info-key">${d}</span>
+      <div style="display:flex;align-items:center;gap:8px;flex:1;margin-left:12px;">
+        <div style="flex:1;height:6px;border-radius:3px;background:var(--border2);overflow:hidden;">
+          <div style="width:${(dayCounts[i]/maxD)*100}%;height:100%;background:var(--gold);border-radius:3px;transition:width 0.5s;"></div>
+        </div>
+        <span class="info-val" style="width:20px;text-align:right;">${dayCounts[i]}</span>
+      </div>
+    </div>`).join('');
+
+  // Timeline
+  const recent10 = sorted.slice(0,10);
+  document.getElementById('timeline-content').innerHTML = recent10.length
+    ? `<div class="timeline">${recent10.map(u => `
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div>
+            <div class="tl-name">${esc(u.name||'Unknown')}</div>
+            <div class="tl-email">${esc(u.email||'—')}</div>
+          </div>
+          <div class="tl-date">${u.created_at ? new Date(u.created_at).toLocaleString('en-IN',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'}) : '—'}</div>
+        </div>`).join('')}</div>`
+    : '<div class="t-empty">No activity yet.</div>';
+}
+
+function daysSinceFirst(users) {
+  const dates = users.map(u => u.created_at ? new Date(u.created_at) : null).filter(Boolean);
+  if (!dates.length) return 1;
+  const first = new Date(Math.min(...dates));
+  return Math.max(1, Math.round((new Date() - first) / (1000*3600*24)));
+}
+
+// ── EXPORT CSV ──
+function exportCSV() {
+  if (!allUsers.length) return;
+  const header = 'Name,Email,Joined\n';
+  const rows = allUsers.map(u =>
+    `"${(u.name||'').replace(/"/g,'""')}","${(u.email||'').replace(/"/g,'""')}","${u.created_at||''}"`
+  ).join('\n');
+  const blob = new Blob([header+rows], {type:'text/csv'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `aurum-users-${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();
+}
+
+function esc(s) {
+  return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+</script>
+</body>
+</html>
